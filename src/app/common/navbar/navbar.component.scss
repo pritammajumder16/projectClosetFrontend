@@ -1,0 +1,70 @@
+.outerDiv {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem;
+  flex-wrap: wrap;
+  .outerDiv1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    flex-wrap: wrap;
+  }
+  .outerDiv2 {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .projectTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  p {
+    margin: 0px;
+  }
+  .outerItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .innerItem {
+      text-wrap: nowrap;
+      text-decoration: none;
+      color: black;
+      padding-right: 2rem !important;
+    }
+    .innerIcon {
+      font-size: 1.4rem;
+    }
+  }
+  mat-form-field {
+    width: 22rem;
+    input {
+      width: 63%;
+    }
+    ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+      display: none;
+    }
+    mat-select {
+      width: 40%;
+      padding-right: 0.5rem;
+      border-right: 1px solid grey;
+    }
+    ::ng-deep .mat-mdc-form-field-infix {
+      display: flex;
+    }
+
+    .innerIcon {
+      padding-right: 1.5rem;
+      padding-left: 0.5rem;
+    }
+  }
+}
+@media only screen and (max-width: 1225px) {
+  .outerDiv2 {
+    width: 80%;
+    padding-top: 1rem;
+  }
+}

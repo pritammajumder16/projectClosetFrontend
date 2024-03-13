@@ -1,0 +1,46 @@
+<div class="outerDiv">
+    <mat-card class="outerCard">
+       <form (ngSubmit)="onSubmit($event)" [formGroup]="userForm" class="outerForm">
+        <div>
+            <mat-form-field  appearance="outline" class="innerInput">
+                <mat-label>Name</mat-label>
+                <input formControlName="userName" type="text" matInput placeholder="Enter Name">
+            </mat-form-field>
+            <mat-form-field  appearance="outline" class="innerInput">
+                <mat-label>Date of Birth</mat-label>
+                <input formControlName="dateOfBirth" matInput [matDatepicker]="picker">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field  appearance="outline" class="innerInput">
+                <mat-label>Email</mat-label>
+                <input formControlName="email" type="text" matInput placeholder="Enter Email">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="innerInput">
+                <mat-label>Phone Number</mat-label>
+                <input  formControlName="phoneNumber" type="number" matInput placeholder="Enter Phone Number">
+            </mat-form-field>
+
+        </div>
+        <div>
+            <mat-form-field  appearance="outline" class="innerInput">
+                <mat-label>Password</mat-label>
+                <input formControlName="password" type="text" matInput placeholder="Enter Password">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="innerInput">
+                <mat-label>Confirm Password</mat-label>
+                <input  formControlName="confirmPassword" type="number" matInput placeholder="Confirm Password">
+            </mat-form-field>
+
+        </div>
+        <mat-radio-group formControlName="gender" aria-label="Select Gender"  appearance="outline" class="innerInput">
+            <mat-radio-button value="1">Male</mat-radio-button>
+            <mat-radio-button value="2">Female</mat-radio-button>
+          </mat-radio-group>
+          
+          <button type="sumbit" mat-stroked-button color="primary">Sign Up</button>
+       </form>
+    </mat-card>
+</div>

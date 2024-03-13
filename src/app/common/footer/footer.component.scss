@@ -1,0 +1,25 @@
+.outerDiv{
+    background: #D1E2EB;
+    display: flex;
+    justify-content: space-around;
+    .innerDiv{
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        .innerItem{
+            padding: 0.5rem;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+    }
+}
+@media only screen and (max-width: 621px){
+    .outerDiv{
+        flex-wrap: wrap;
+        .innerDiv{
+            width: 35%;
+        }
+    }
+}
