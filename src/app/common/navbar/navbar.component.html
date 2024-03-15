@@ -1,16 +1,26 @@
 <div class="outerDiv">
   <div class="outerDiv1">
-    <div class="projectTitle">
-      <mat-icon class="innerIcon">shopping_cart</mat-icon>
-      <p>{{ title }}</p>
+    <div class="topDivItems">
+      <div class="projectHamburger">
+        <app-side-nav></app-side-nav>
+      </div>
+      <div class="projectTitle">
+        <mat-icon class="innerIcon">shopping_cart</mat-icon>
+        <p>{{ title }}</p>
+      </div>
+      <div class="shoppingCart">
+        <mat-icon>shopping_bag</mat-icon>
+      </div>
     </div>
     <mat-form-field appearance="outline">
       <input matInput placeholder="Search Products" />
-      <mat-select name="ampm" placeholder="All Products" class="ampm">
-        <mat-option value="AM">AM</mat-option>
-        <mat-option value="PM">PM</mat-option>
-      </mat-select>
-      <mat-icon class="innerIcon">search</mat-icon>
+      <div class="rightSearches">
+        <mat-select name="ampm" placeholder="All Products" class="ampm">
+          <mat-option value="AM">AM</mat-option>
+          <mat-option value="PM">PM</mat-option>
+        </mat-select>
+        <mat-icon class="innerIcon">search</mat-icon>
+      </div>
     </mat-form-field>
   </div>
 

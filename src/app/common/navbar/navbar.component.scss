@@ -1,4 +1,5 @@
 .outerDiv {
+  width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -6,20 +7,35 @@
   flex-wrap: wrap;
   .outerDiv1 {
     display: flex;
-    justify-content: space-between;
+    flex-grow: 100;
+    justify-content: space-around;
     align-items: center;
     padding: 1rem;
-    flex-wrap: wrap;
+    flex-wrap: wrap; 
+    .topDivItems{
+      flex-grow: 100;
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+    }
+    .projectTitle {
+      font-weight:bold;
+      display: flex;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      margin-right: 0.5rem;
+      justify-content: center;
+      align-items: center;
+    }
+    .projectHamburger, .shoppingCart{
+      display: none;
+    }
   }
+ 
   .outerDiv2 {
-    width: 50%;
+    width: 52%;
+    flex-grow: 100;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .projectTitle {
-    display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
   }
   p {
@@ -40,31 +56,54 @@
     }
   }
   mat-form-field {
+    flex-grow: 100;
     width: 22rem;
     input {
+        flex-grow: 100;
       width: 63%;
     }
     ::ng-deep .mat-mdc-form-field-subscript-wrapper {
       display: none;
     }
     mat-select {
-      width: 40%;
+      width: max-content;
+      max-width: 8rem;
       padding-right: 0.5rem;
       border-right: 1px solid grey;
     }
     ::ng-deep .mat-mdc-form-field-infix {
       display: flex;
+      justify-content: space-between;
     }
-
+    .rightSearches {
+      display: flex;
+      justify-content: right;
+      align-items: center;
+    }
     .innerIcon {
       padding-right: 1.5rem;
       padding-left: 0.5rem;
     }
   }
 }
-@media only screen and (max-width: 1225px) {
+@media only screen and (max-width: 1090px) {
   .outerDiv2 {
-    width: 80%;
-    padding-top: 1rem;
+    padding-top: 0.5rem;
+  }
+}
+@media only screen and (max-width: 621px) {
+  .outerDiv2 {
+    display: none !important;
+  }
+  .outerDiv1{
+    
+    width: 100%;
+  }
+  .topDivItems {
+    width: 100%;
+    padding-bottom: 0.5rem;
+  }
+  .projectHamburger, .shoppingCart{
+    display: inline-block !important;
   }
 }

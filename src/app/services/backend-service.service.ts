@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 export class BackendServiceService {
   private URI = "http://localhost:4000/";
   private headers = new HttpHeaders({"content-type":"application/json"})
-  public makeGetApiCall(uriExtend:string){
-    return this._http.get<Observable<any>>(this.URI+uriExtend,{headers:this.headers})
+  public makeGetApiCall(uriExtend:string,params:{[key:string]:string}={}){
+    return this._http.get<Observable<any>>(this.URI+uriExtend,{headers:this.headers,params})
   }
   public makePostApiCall(uriExtend:string,payload:any){
     return this._http.post(this.URI+uriExtend,payload,{headers:this.headers})

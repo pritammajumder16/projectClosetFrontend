@@ -1,0 +1,31 @@
+<mat-drawer-container autosize hasBackdrop="true">
+  <mat-drawer #drawer mode="over">
+    <div class="matDrawerOuterBox">
+        <div class="outerItem topBar">
+            <div class="projectTitle">
+                <mat-icon class="innerIcon">shopping_cart</mat-icon>
+                <p>Project Closet</p>
+              </div>
+            <mat-icon (click)="drawer.close()">arrow_back</mat-icon>
+        </div>
+      <div class="outerItem">
+        <mat-icon>info</mat-icon>
+        <a class="innerItem" href="#">About Us</a>
+      </div>
+      <div class="outerItem">
+        <mat-icon>rss_feed</mat-icon>
+        <a class="innerItem" href="#">Blog</a>
+      </div>
+      <div class="outerItem">
+        <mat-icon>phone_in_talk</mat-icon>
+        <a class="innerItem" href="#">Contact Us</a>
+      </div>
+      <div class="outerItem">
+        <mat-icon>help</mat-icon>
+        <a class="innerItem" href="#">Help & Support</a>
+      </div>
+    </div>
+  </mat-drawer>
+
+  <mat-icon (click)="drawer.toggle()">menu</mat-icon>
+</mat-drawer-container>

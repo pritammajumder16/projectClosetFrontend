@@ -9,12 +9,16 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { materialModule } from './materials.module';
 import { NavbarBottomComponent } from './common/navbar-bottom/navbar-bottom.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SideNavComponent } from './common/side-nav/side-nav.component';
+import { ErrorDialogComponent } from './common/error-dialog/error-dialog.component';
+import { SuccessDialogComponent } from './common/success-dialog/success-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    SideNavComponent,
     NavbarComponent,
-    FooterComponent,NavbarBottomComponent, 
+    FooterComponent,NavbarBottomComponent, ErrorDialogComponent,SuccessDialogComponent
   ],
   imports: [
     BrowserModule,

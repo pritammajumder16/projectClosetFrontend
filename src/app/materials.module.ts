@@ -1,21 +1,32 @@
-import { NgModule } from "@angular/core";
+import { NgModule } from '@angular/core';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CommonModule } from "@angular/common";
-import {MatSelectModule} from '@angular/material/select';
-import {MatCardModule} from '@angular/material/card';import {MatRadioModule} from '@angular/material/radio';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatNativeDateModule } from "@angular/material/core";
-import {MatButtonModule} from '@angular/material/button';
+import { CommonModule } from '@angular/common';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatButtonModule } from '@angular/material/button';
 
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
-    imports:[CommonModule],
-    exports: [MatIconModule, MatFormFieldModule, MatInputModule,MatSelectModule,MatCardModule,MatRadioModule,MatDatepickerModule,  MatDatepickerModule,
-        MatNativeDateModule ,MatButtonModule
-    ],
+  imports: [CommonModule],
+  exports: [
+    MatIconModule,MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCardModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatButtonModule,MatSidenavModule
+  ],
 })
-
-export class materialModule { };
+export class materialModule {}

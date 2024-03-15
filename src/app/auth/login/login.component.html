@@ -1,1 +1,38 @@
-<p>login works!</p>
+<div class="outerDiv">
+  <mat-card class="card">
+    <form class="insideCardBox" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+      <div class=" logoBox">
+        <img class="innerItem" src="assets/icons8-login-100.png" alt="" />
+      </div>
+      <div class="innerBox">
+        <mat-form-field class="innerItem" appearance="outline">
+          <mat-label>Email ID</mat-label>
+          <input type="text" name="email" ngModel matInput  required/>
+          <mat-error>Please enter email</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="innerBox">
+        <mat-form-field class="innerItem" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input type="password" name="password" ngModel matInput required/>
+          <mat-error>Please enter password</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="innerBox">
+        <button class="innerItem gBtn" type="submit" mat-stroked-button >Login</button>
+      </div>
+      <div class="innerBox">
+        <span class="innerItem">Or</span>
+      </div>
+      <div class="innerBox">
+        <div class="innerItem">
+            <button mat-stroked-button type="button" >
+                <i class="fa fa-google-plus" style="color: red"></i>&nbsp;Login with Google</button>
+        </div>
+      </div>
+      <div class="innerBox">
+        <a class="innerItem" routerLink="/auth/signup">No Account? Sign Up</a>
+      </div>
+    </form>
+  </mat-card>
+</div>
