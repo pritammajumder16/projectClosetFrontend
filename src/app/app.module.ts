@@ -11,6 +11,7 @@ import { NavbarBottomComponent } from './common/navbar-bottom/navbar-bottom.comp
 import { HttpClientModule } from '@angular/common/http';
 import { SideNavComponent } from './common/side-nav/side-nav.component';
 import { ErrorDialogComponent } from './common/error-dialog/error-dialog.component';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 import { SuccessDialogComponent } from './common/success-dialog/success-dialog.component';
 
 @NgModule({
@@ -22,7 +23,7 @@ import { SuccessDialogComponent } from './common/success-dialog/success-dialog.c
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,materialModule,HttpClientModule
+    AppRoutingModule,materialModule,HttpClientModule,NgHttpLoaderModule.forRoot()
   ],
   providers: [
     provideAnimationsAsync()

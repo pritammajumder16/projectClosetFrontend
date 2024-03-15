@@ -1,0 +1,68 @@
+<div class="outerDiv">
+    <mat-card class="card">
+      <form class="insideCardBox" [formGroup]="userForm" (ngSubmit)="onSubmit($event)">
+        <div class=" logoBox">
+          <mat-icon class="innerItem">person_add</mat-icon>
+        </div> 
+        <div class="innerBox">
+            <mat-form-field class="innerItem" appearance="outline">
+              <mat-label>User Name</mat-label>
+              <input type="text" name="email" formControlName="userName" matInput/>
+              <mat-error>Please enter user name</mat-error>
+            </mat-form-field>
+          </div>
+        <div class="innerBox">
+          <mat-form-field class="innerItem" appearance="outline">
+            <mat-label>Email ID</mat-label>
+            <input type="text" name="email" formControlName="email" matInput/>
+            <mat-error *ngIf="userForm.get('email')?.errors?.['required']">Please enter Email</mat-error>
+            <mat-error *ngIf="userForm.get('email')?.errors?.['pattern']">Must be a valid Email</mat-error>
+          </mat-form-field>
+        </div>   
+        <div class="innerBox">
+            <mat-form-field class="innerItem" appearance="outline">
+                <mat-label>Date of Birth</mat-label>
+                <input matInput  formControlName="dateOfBirth" [matDatepicker]="picker">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker  #picker></mat-datepicker>
+                <mat-error>Please enter date of birth</mat-error>
+              </mat-form-field>
+          </div>
+
+         
+        <div class="innerBox">
+          <mat-form-field class="innerItem" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input type="password" name="password" #password formControlName="password" matInput/>
+            <mat-error *ngIf="userForm.get('password')?.errors?.['required']">Please enter password</mat-error>
+            <mat-error *ngIf="userForm.get('password')?.errors?.['minlength']">Must have at least 8 charecters</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="innerBox">
+            <mat-form-field class="innerItem" appearance="outline">
+              <mat-label>Confirm Password</mat-label>
+              <input type="password" name="confirmPassword" formControlName="confirmPassword" matInput/>
+              <mat-error *ngIf="userForm.get('confirmPassword')?.errors?.['required']">Please enter password again</mat-error>
+            </mat-form-field>
+            <mat-error *ngIf="userForm.errors?.['mismatch']">Password and Confirm Password are not same</mat-error>
+          </div>          
+          <div class="innerBox">
+            <mat-radio-group formControlName="gender" class="innerItem" aria-label="Select Gender">
+              <mat-label>Gender: </mat-label>
+              <mat-radio-button value="Male">Male</mat-radio-button>
+              <mat-radio-button value="Female">Female</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        <div class="innerBox">
+          <button class="innerItem gBtn" type="submit" mat-stroked-button >Create an account</button>
+        </div>
+        <div class="innerBox">
+          <span class="innerItem">Or</span>
+        </div>
+        <div class="innerBox">
+          <a class="innerItem" routerLink="/auth/login">Have an account? Log in</a>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+  

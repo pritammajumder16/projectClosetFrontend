@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { BackendServiceService } from '../../services/backend-service.service';
-import { AuthServiceService } from '../../services/auth-service.service';
+import { BackendServiceService } from '../../../../services/backend-service.service';
+import { AuthServiceService } from '../../../../services/auth-service.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ErrorDialogComponent } from '../../common/error-dialog/error-dialog.component';
-import { SuccessDialogComponent } from '../../common/success-dialog/success-dialog.component';
+import { ErrorDialogComponent } from '../../../../common/error-dialog/error-dialog.component';
 import { Router } from '@angular/router';
 
 @Component({

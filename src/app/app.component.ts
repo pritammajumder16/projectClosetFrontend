@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthServiceService } from './services/auth-service.service';
+import { Spinkit } from 'ng-http-loader';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,7 @@ import { AuthServiceService } from './services/auth-service.service';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  public spinkit = Spinkit;
   title = 'projectClosetFrontend';
   constructor(private _authService:AuthServiceService){
 
