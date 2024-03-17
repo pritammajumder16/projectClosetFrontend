@@ -1,0 +1,27 @@
+.outerDiv {
+  padding: 1rem;
+  margin: 1rem;
+  .headline {
+    font-weight: bolder;
+  }
+  .categoryForm {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    mat-form-field {
+      width: 100%;
+     
+    }
+    .sbtCancelBtns {
+      display: flex;
+      .submitBtn {
+        background-color: #d1e2eb;
+      }
+      .cancelBtn {
+        margin-left: 1rem;
+      }
+    }
+  }
+}
+

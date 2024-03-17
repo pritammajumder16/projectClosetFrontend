@@ -9,20 +9,28 @@
             <mat-icon (click)="drawer.close()">arrow_back</mat-icon>
         </div>
       <div class="outerItem">
-        <mat-icon>info</mat-icon>
-        <a class="innerItem" href="#">About Us</a>
+        <a class="innerItem alignCenterFlex" href="#">
+          <mat-icon>info</mat-icon>About Us</a>
       </div>
       <div class="outerItem">
-        <mat-icon>rss_feed</mat-icon>
-        <a class="innerItem" href="#">Blog</a>
+        <a class="innerItem alignCenterFlex" href="#">
+          <mat-icon>rss_feed</mat-icon>Blog</a>
       </div>
       <div class="outerItem">
-        <mat-icon>phone_in_talk</mat-icon>
-        <a class="innerItem" href="#">Contact Us</a>
+        <a class="innerItem alignCenterFlex" href="#">
+          <mat-icon>phone_in_talk</mat-icon>Contact Us</a>
       </div>
       <div class="outerItem">
-        <mat-icon>help</mat-icon>
-        <a class="innerItem" href="#">Help & Support</a>
+        <a class="innerItem alignCenterFlex" href="#">
+          <mat-icon>help</mat-icon>Help & Support</a>
+      </div>      
+      <div class="outerItem">
+        <a class="innerItem alignCenterFlex" routerLink="/admin/home" routerLinkActive="routerActive">
+          <mat-icon>admin_panel_settings</mat-icon>Administration</a>
+      </div>
+      <div class="outerItem">
+        <a class="innerItem alignCenterFlex" (click)="logout()">
+          <mat-icon>logout</mat-icon>Logout</a>
       </div>
     </div>
   </mat-drawer>

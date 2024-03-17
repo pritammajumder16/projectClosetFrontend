@@ -9,6 +9,7 @@ mat-drawer{
     width: 100%;
     display: flex;
     flex-direction: column;
+   
     .outerItem{
         width: 100%;
         padding: 0.5rem;
@@ -19,6 +20,9 @@ mat-drawer{
         a{
             text-decoration: none;
             color: black;
+        } 
+        .routerActive{
+            background-color: #d1e2eb;
         }
         .projectTitle{
             display: flex;

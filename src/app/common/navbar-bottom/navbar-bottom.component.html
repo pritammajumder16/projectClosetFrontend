@@ -1,38 +1,36 @@
 <div class="outerDiv">
-    <div class="innerDiv">
-        <div class="innerDiv logoBtn">
-            <mat-icon>category</mat-icon>
-            <strong>Categories</strong>
-        </div>
-        <mat-form-field appearance="outline">
-            <mat-select placeholder="Currency">
-                <mat-option>USD</mat-option>
-                <mat-option>INR</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-select placeholder="Language">
-                <mat-option>English</mat-option>
-                <mat-option>Hindi</mat-option>
-            </mat-select>
-        </mat-form-field>
+  <div class="innerDiv">
+    <div class="innerDiv logoBtn">
+      <mat-icon>category</mat-icon>
+      <strong>Categories</strong>
     </div>
-    <div class="innerDiv">
-        <div class="innerDiv logoBtn">
-            <mat-icon>login</mat-icon>
-            <span>Sign In</span>
-        </div>
-        
-        <div class="innerDiv logoBtn">
-            <mat-icon>favorite</mat-icon>
-            <span>Favorite</span>
-        </div>
-        
-        <div class="innerDiv logoBtn">
-            <mat-icon>
-                shopping_bag
-                </mat-icon>
-            <span>Cart</span>
-        </div>
+  </div>
+  <div class="innerDiv">
+    <div class="innerDiv logoBtn" *ngIf="!isAuthenticated">
+        <a href="" class="alignCenterFlex" routerLink="/auth/login"><mat-icon>login</mat-icon>Sign In</a>
     </div>
+    <div class="innerDiv logoBtn" *ngIf="isAuthenticated">
+      <span>Hi, {{ userName }} &nbsp;</span>
+    </div>
+    <div class="innerDiv logoBtn" *ngIf="isAuthenticated">
+      <span class="alignCenterFlex pointer" (click)="logout()">
+        <mat-icon>logout</mat-icon>Logout</span
+      >
+    </div>
+
+    <div class="innerDiv logoBtn">
+      <mat-icon>favorite</mat-icon>
+      <span>Favorite</span>
+    </div>
+
+    <div class="innerDiv logoBtn">
+      <mat-icon> shopping_bag </mat-icon>
+      <span>Cart</span>
+    </div>
+    <div class="innerDiv logoBtn" *ngIf="isAuthenticated">
+      <span class="alignCenterFlex pointer">
+        <mat-icon>settings</mat-icon>App Settings</span
+      >
+    </div>
+  </div>
 </div>

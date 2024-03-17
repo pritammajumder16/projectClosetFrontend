@@ -25,3 +25,33 @@ mat-form-field {
       }
       
 }
+.pointer{
+  cursor: pointer;
+}
+.alignCenterFlex{
+  display: flex;
+  align-items: center;
+}
+.bothCenterFlex{
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+ .mdc-text-field--disabled{
+  background-color: #EBEBE4;
+}
+
+.mat-mdc-form-field-flex {
+  height: 36px !important;
+}
+.mdc-data-table__cell, .mdc-data-table__header-cell{
+  padding: 0px !important;
+  text-align: center !important;
+}
+.mat-form-field-readonly {
+  color: grey;
+  background-color: EBEBE4 !important;
+  .mat-mdc-text-field-wrapper {
+    background-color: EBEBE4 !important;
+  }
+}

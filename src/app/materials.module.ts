@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,14 +9,18 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
-
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import {TextFieldModule} from '@angular/cdk/text-field';
 
 @NgModule({
   imports: [CommonModule],
   exports: [
-    MatIconModule,MatDialogModule,
+    MatIconModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
@@ -26,7 +29,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatDatepickerModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatButtonModule,MatSidenavModule
+    MatButtonModule,
+    MatSidenavModule,
+    MatDividerModule,
+    MatTableModule,
+    MatPaginatorModule,TextFieldModule
   ],
 })
 export class materialModule {}

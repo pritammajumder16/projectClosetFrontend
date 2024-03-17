@@ -8,11 +8,12 @@ import { FooterComponent } from './common/footer/footer.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { materialModule } from './materials.module';
 import { NavbarBottomComponent } from './common/navbar-bottom/navbar-bottom.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SideNavComponent } from './common/side-nav/side-nav.component';
 import { ErrorDialogComponent } from './common/error-dialog/error-dialog.component';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 import { SuccessDialogComponent } from './common/success-dialog/success-dialog.component';
+import { bearerInterceptor } from './interceptors/bearerInterceptor';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { SuccessDialogComponent } from './common/success-dialog/success-dialog.c
     AppRoutingModule,materialModule,HttpClientModule,NgHttpLoaderModule.forRoot()
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(), {
+      provide: HTTP_INTERCEPTORS, useClass: bearerInterceptor, multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

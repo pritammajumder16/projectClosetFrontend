@@ -6,11 +6,16 @@
     justify-content: space-between;
     align-items: center;
     .innerDiv{
+        padding: 0.5rem;
         display: flex;
         justify-content: space-around;
         align-items: center;
         .logoBtn{
             padding:0px 0.5rem;
+            a{
+                color: white;
+                text-decoration: none;
+            }
         }
     }
     mat-form-field{

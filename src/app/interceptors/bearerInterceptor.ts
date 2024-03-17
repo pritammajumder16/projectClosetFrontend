@@ -7,9 +7,10 @@ import { AuthServiceService } from "../services/auth-service.service";
 export class bearerInterceptor implements HttpInterceptor{
     constructor(private _authService:AuthServiceService){}
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        console.log("intercept")
         const obj:{[key:string]:any} = this._authService.getData();
         if(obj["token"]){
-            req = req.clone({setHeaders:{"Authorization":obj["token"]||"", "requestedBy":obj['email']}})
+            req = req.clone({setHeaders:{"authorization":obj["token"]||"", "requestedby":obj['email']}})
         }
         return next.handle(req)
     }

@@ -1,0 +1,40 @@
+.outerDiv {
+  padding: 1rem;
+  .headline {
+    font-weight: bolder;
+  }
+  .categoryForm {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    mat-form-field {
+      width: 100%;
+    }
+    .innerDiv {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      .fieldDiv {
+        display: flex;
+        flex-direction: column;
+        min-width: 10rem;
+        width: 49%;
+      }
+    }
+    textarea {
+      margin-bottom: 1rem;
+    }
+    .sbtCancelBtns {
+      display: flex;
+      .submitBtn {
+        background-color: #d1e2eb;
+      }
+      .cancelBtn {
+        margin-left: 1rem;
+      }
+    }
+  }
+}

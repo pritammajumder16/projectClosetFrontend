@@ -1,0 +1,35 @@
+.outerDiv{
+    width: 100%;
+    .outerBtns{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem;
+        .btns{
+            margin: 0.2rem;
+        }
+    }
+    .outerCards{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        .cards{
+            margin: 0.5rem;
+            padding: 1rem;
+            border: 0.2rem solid grey;
+            background-color: #d1e2eb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            span{
+                font-weight: bolder;
+            }
+        }
+        .cards:nth-child(2n+1){
+            border: 0.2rem solid #d1e2eb;
+            background-color: grey;
+            color: white;
+        }
+    }
+}

@@ -1,0 +1,102 @@
+<div class="outerDiv">
+  <span class="headline"
+    >{{ action == "create" ? "Create" : "Update" }} Category</span
+  >
+  <mat-divider></mat-divider>
+  <form
+    action=""
+    class="categoryForm"
+    [formGroup]="productForm"
+    (ngSubmit)="submit()"
+  >
+    <div class="innerDiv">
+      <div class="fieldDiv">
+        <mat-label>Product ID</mat-label>
+        <mat-form-field appearance="outline">
+          <input
+            type="text"
+            matInput
+            name="productId"
+            formControlName="productId"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="fieldDiv">
+        <mat-label>Product Name</mat-label>
+        <mat-form-field appearance="outline">
+          <input
+            type="text"
+            matInput
+            required
+            minlength="3"
+            formControlName="productName"
+          />
+          <mat-error
+            *ngIf="productForm.controls?.['productName']?.errors?.['required']"
+            >Enter category name</mat-error
+          >
+          <mat-error
+            *ngIf="productForm.controls?.['productName']?.errors?.['minlength']"
+            >Minimum 3 charecters</mat-error
+          >
+        </mat-form-field>
+      </div>
+    </div>
+
+    <mat-label>Product Description</mat-label>
+    <textarea matInput rows="5" formControlName="description"></textarea>
+    <div class="innerDiv">
+      <div class="fieldDiv">
+        <mat-label>Size</mat-label>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="size" multiple>
+            @for (size of sizeList; track size) {
+            <mat-option [value]="size">{{ size }}</mat-option>
+            }
+          </mat-select>
+          <mat-error>Size is required</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="fieldDiv">
+        <mat-label>Price</mat-label>
+        <mat-form-field appearance="outline">
+          <input type="number" matInput formControlName="price" />
+          <mat-error>Price is required</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="innerDiv" *ngIf="allFiles.length > 0">
+      <mat-label>Preview</mat-label>
+
+      <img *ngFor="let file of allFiles" [src]="file" alt="" />
+    </div>
+    <div class="innerDiv">
+      <div class="fieldDiv">
+        <mat-label>Product Images (only jpg/jpeg/png)</mat-label>
+        <button
+          style="width: max-content"
+          mat-button
+          (click)="fileInput.click()"
+        >
+          Upload File
+        </button>
+        <input #fileInput type="file" hidden (change)="fileUpload($event)" />
+      </div>
+    </div>
+    <div class="sbtCancelBtns">
+      <button type="submit" mat-stroked-button>
+        {{ action == "create" ? "Create" : "Update" }}
+      </button>
+      <button
+        type="button"
+        (click)="cancel()"
+        class="cancelBtn"
+        mat-stroked-button
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

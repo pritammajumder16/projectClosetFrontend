@@ -1,0 +1,20 @@
+<div class="outerDiv">
+    <span class="headline">{{action=="create"?"Create":"Update"}} Category</span>
+    <mat-divider></mat-divider>
+    <form action="" class="categoryForm" #categoryForm="ngForm" (ngSubmit)="submit(categoryForm)">
+        <mat-form-field appearance="outline">
+            <mat-label>Category ID</mat-label>
+            <input type="text" matInput disabled [ngModel]="categoryId" name="categoryId">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Category Name</mat-label>
+            <input type="text"  matInput required minlength="3"  [ngModel]="categoryName" name="categoryName">
+            <mat-error *ngIf="categoryForm.controls?.['categoryName']?.errors?.['required']">Enter category name</mat-error>
+            <mat-error *ngIf="categoryForm.controls?.['categoryName']?.errors?.['minlength']">Minimum 3 charecters</mat-error>
+        </mat-form-field>
+        <div class="sbtCancelBtns">
+            <button type="submit" mat-stroked-button>{{action=="create"?"Create":"Update"}}</button>
+            <button type="button" (click)="close()" class="cancelBtn" mat-stroked-button>Cancel</button>
+        </div>
+    </form>
+</div>

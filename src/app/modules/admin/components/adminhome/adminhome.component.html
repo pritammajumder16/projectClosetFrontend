@@ -1,1 +1,32 @@
-<p>adminhome works!</p>
+<div class="outerDiv">
+  <div class="outerBtns">
+    <button class="btns" mat-stroked-button (click)="routeTo('categories')">Categories</button>
+    <button class="btns" mat-stroked-button (click)="routeTo('productList')">Products</button>
+    <button class="btns" mat-stroked-button (click)="routeTo('categories')">Users</button>
+    <button class="btns" mat-stroked-button (click)="routeTo('categories')">About us</button>
+    <button class="btns" mat-stroked-button (click)="routeTo('categories')">Orders</button>
+  </div>
+  <div class="outerCards">
+    <mat-card class="cards"
+      ><span class="descriptionCard">Users:</span
+      ><span class="valueCard">10</span>
+    </mat-card>
+
+    <mat-card class="cards"
+      ><span class="descriptionCard">Active Users (current Month):</span
+      ><span class="valueCard">4 (40%)</span>
+    </mat-card>
+    <mat-card class="cards"
+      ><span class="descriptionCard">Total Sales:</span
+      ><span class="valueCard">1000 rupees</span>
+    </mat-card>
+    <mat-card class="cards"
+      ><span class="descriptionCard">Current Month Sales:</span
+      ><span class="valueCard">200 rupees (20%)</span>
+    </mat-card>
+    <mat-card class="cards"
+      ><span class="descriptionCard">Average Order Value:</span
+      ><span class="valueCard">400 rupees</span>
+    </mat-card>
+  </div>
+</div>
