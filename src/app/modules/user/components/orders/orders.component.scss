@@ -1,0 +1,62 @@
+.outerDiv {
+  padding: 1rem;
+  .panelTitle {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  ::ng-deep .mat-expansion-panel-body {
+    padding: 0px;
+  }
+  .orderTable{
+    width: max-content;
+  }
+  .hide {
+    display: inline-block;
+  }
+  .cartItems {
+    height: 5rem;
+    display: flex;
+    .cartTitle {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    img {
+      padding: 0.5rem;
+      height: 100%;
+    }
+  }
+  .priceBox {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    justify-content: space-evenly;
+    span {
+      padding: 0.5rem;
+    }
+  }
+  .box {
+    border-radius: 0.2rem;
+    border: 1px solid black;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 1), 0 1px 1px 0 rgba(0, 0, 0, 1),
+      0 1px 3px 0 rgba(0, 0, 0, 1);
+  }
+}
+@media only screen and (max-width: 621px) {
+    .panelTitle{
+        flex-direction: column !important;
+        height: auto !important;
+    }
+    .panelHeader{
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+      }
+    mat-expansion-panel-header{
+        height: auto !important;
+    }
+
+}

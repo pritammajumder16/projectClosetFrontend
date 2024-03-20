@@ -10,6 +10,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { bearerInterceptor } from '../../interceptors/bearerInterceptor';
 import { ProductCreateComponent } from './components/product-create/product-create.component';
+import { UsersListComponent } from './components/users-list/users-list.component';
+import { UserUpdateDialogComponent } from './components/user-update-dialog/user-update-dialog.component';
+import { OrdersComponent } from './components/orders/orders.component';
 
 
 
@@ -20,6 +23,9 @@ import { ProductCreateComponent } from './components/product-create/product-crea
     ProductsListComponent,
     CategoryCreateComponent,
     ProductCreateComponent,
+    UsersListComponent,
+    UserUpdateDialogComponent,
+    OrdersComponent,
   ],
   imports: [
     CommonModule,materialModule,adminRoutingModule,ReactiveFormsModule,FormsModule

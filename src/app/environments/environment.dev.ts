@@ -1,0 +1,6 @@
+export const environment = {
+  PAYPAL_SECRET_KEY:
+    'EF11VO1ufLvMKMGRM6K-Kg0ZHlCwkr6IwKrSELTdABuqSdJlvq3EmrbQdEcNW1NBJXlizGniGTUC4frE',
+  PAYPAL_CLIENT_ID:
+    'AcHAX0PYhzMHgMz5lCeUuYSZTBwYz1KpU63zKSGss5kCzMiBI4D7nWZC_ffp7KudJWqA1DpYoQ62MBeh',
+};

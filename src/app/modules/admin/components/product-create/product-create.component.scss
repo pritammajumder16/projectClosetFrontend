@@ -8,6 +8,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    max-width: 50rem;
     mat-form-field {
       width: 100%;
     }
@@ -18,16 +19,42 @@
       justify-content: space-between;
       flex-wrap: wrap;
       .fieldDiv {
+        padding: 0px 0.5rem;
+        min-width: 20rem;
         display: flex;
         flex-direction: column;
-        min-width: 10rem;
-        width: 49%;
+        flex-grow: 100;
+      }
+    }
+    .innerFileDiv {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      .imageInnerDiv {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        .imageDiv {
+          display: flex;
+          flex-direction: column;
+          max-width: fit-content;
+          max-height: fit-content;
+          align-items: center;
+          img {
+            margin-right: 0.5rem;
+            height: 10rem;
+            max-width: 15rem;
+          }
+        }
       }
     }
     textarea {
+      width: 100%;
+      padding: 0.5rem;
       margin-bottom: 1rem;
     }
     .sbtCancelBtns {
+      margin-top: 1rem;
       display: flex;
       .submitBtn {
         background-color: #d1e2eb;

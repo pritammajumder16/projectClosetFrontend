@@ -1,0 +1,65 @@
+<div class="outerFilterDiv" [ngClass]="fromFilterBtn==true?'sidenav':''">
+  <div class="filterDiv">
+    <span class="filterName">Filter</span>
+    <mat-form-field appearance="outline">
+      <mat-label>Search</mat-label>
+      <input type="text" [(ngModel)]="searchText" matInput />
+      <mat-icon class="pointer" (click)="filterChange(searchText,'searchText')" >search</mat-icon>
+    </mat-form-field>
+  </div>
+  <mat-divider class="divider"></mat-divider>
+  <div class="filterDiv">
+    <span class="filterName">Price</span>
+    <div class="minMax">
+      <mat-form-field appearance="outline">
+        <mat-label>Min</mat-label>
+        <input type="number" matInput (change)="filterChange(value1,'slider1')" [(ngModel)]="value1" /> </mat-form-field
+      ><mat-form-field appearance="outline">
+        <mat-label>Max</mat-label>
+        <input type="number" matInput (change)="filterChange(value2,'slider2')" [(ngModel)]="value2" />
+      </mat-form-field>
+    </div>
+
+    <mat-slider
+      class="slider"
+      [max]="max"
+      [min]="min"
+      [step]="step"
+      [discrete]="thumbLabel"
+      [showTickMarks]="showTicks"
+    >
+      <input [(ngModel)]="value1" (change)="filterChange(value1,'slider1')" matSliderStartThumb />
+      <input [(ngModel)]="value2" (change)="filterChange(value2,'slider2')" matSliderEndThumb />
+    </mat-slider>
+  </div>
+
+  <mat-divider class="divider"></mat-divider>
+
+  <div class="filterDiv">
+    <span class="filterName">Categories</span>
+    <section class="categoryFilter" >
+      <mat-checkbox [(ngModel)]="selectedCategories[category.categoryId]" (change)="filterChange(selectedCategories,'catagories')"
+        color="primary"
+        [value]="categories"
+        *ngFor="let category of categories"
+        class="example-margin"
+        >{{ category.categoryName }}</mat-checkbox
+      >
+    </section>
+  </div>
+  <mat-divider class="divider"> </mat-divider>
+  <div class="filterDiv">
+    <span class="filterName">Sizes</span>
+    <section class="sizeFilter">
+      <mat-checkbox
+        color="primary" [(ngModel)]="selectedSizes[size]" (change)="filterChange(selectedSizes,'sizes')"
+        [value]="size"
+        *ngFor="let size of sizeArray"
+        class="example-margin"
+        >{{ size }}</mat-checkbox
+      >
+    </section>
+  </div>
+  <mat-divider class="divider"> </mat-divider>
+  {{ showCount }} Products found
+</div>

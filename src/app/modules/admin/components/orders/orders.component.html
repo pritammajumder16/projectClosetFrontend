@@ -1,0 +1,68 @@
+<div class="outerDiv">
+    <span class="bold">Orders</span>
+    <mat-divider style="margin: 0.5rem 0px"></mat-divider>
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let order of allOrders">
+        <mat-expansion-panel-header class="panelHeader">
+          <mat-panel-title class="panelTitle">
+            <span>ID: {{ order.orderId }}</span>
+            <span>Amount: {{ order.totalAmount | currency : "INR" }}</span>
+  
+            <span>Status: {{capitalizeFirstLetter(order.status ) }}</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <table mat-table [dataSource]="order.products" class="orderTable">
+          <!--- Note that these columns can be defined in any order.
+                    The actual rendered columns are set as a property on the row definition" -->
+  
+          <!-- Position Column -->
+          <ng-container matColumnDef="title">
+            <td mat-cell *matCellDef="let element" class="cartItems tdItem">
+              <img
+                [src]="fileUri + element.productImages[0]"
+                alt="Could not load image"
+              />
+              <div class="cartTitle">
+                <span class="elipssis bold">{{ element.productName }}</span>
+                <span>Size: {{ element.size }}</span>
+              </div>
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="quantity">
+            <td mat-cell *matCellDef="let element" class="tdItem">
+              <span>{{element.quantity}} units</span>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="totalPrice" class="tdItem">
+            <td mat-cell *matCellDef="let element">
+              {{ element.quantity * element.price + 100 | currency : "INR" }}
+            </td>
+          </ng-container>      
+  
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <div class="outerDetails">
+            <div class="lastDetails">
+                <span>Ordered By: {{order.createdBy}}</span>
+                <span>Ordered on: {{order.creationTime|date}}</span>
+                <span>Shipping Address: {{order.shippingAddress}}</span>
+            </div>
+            <div class="innerBtns">
+                <button  (click)="shipOrder(order.orderId)" *ngIf="order.status=='pending'" mat-stroked-button>Ship Order</button> 
+                <button  (click)="shipOrder(order.orderId)" *ngIf="order.status=='shipped'" mat-stroked-button>Complete Order</button> 
+                <button  (click)="cancelOrder(order.orderId)" *ngIf="order.status!='completed'" mat-stroked-button>Cancel Order</button>
+            </div>
+        </div>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-paginator class="mat-elevation-z8"
+  [length]="length"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="[5, 10, 25]"
+  (page)="page($event)"
+>
+</mat-paginator>
+  </div>
+  

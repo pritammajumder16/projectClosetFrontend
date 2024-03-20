@@ -1,0 +1,48 @@
+<div class="outerDiv">
+  <span class="headline"
+    >{{ action == "create" ? "Create" : "Update" }} Category</span
+  >
+  <mat-divider></mat-divider>
+  <form
+    action=""
+    class="categoryForm"
+    #categoryForm="ngForm"
+    (ngSubmit)="submit(categoryForm)"
+  >
+    <mat-form-field appearance="outline">
+      <mat-label>User Name</mat-label>
+      <input
+        type="text"
+        matInput
+        disabled
+        [ngModel]="userName"
+        name="userName"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input type="text" matInput disabled [ngModel]="email" name="email" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Choose a Role</mat-label>
+      <mat-select required="true" name="role" ngModel [ngModel]="initialRole" >
+        <mat-option [value]="role" *ngFor="let role of roleMatrix">{{role.roleName}}</mat-option>
+      </mat-select>
+      <mat-error>Please select a role</mat-error>
+    </mat-form-field>
+    
+    <div class="sbtCancelBtns">
+      <button type="submit" mat-stroked-button>
+        {{ action == "create" ? "Create" : "Update" }}
+      </button>
+      <button
+        type="button"
+        (click)="close()"
+        class="cancelBtn"
+        mat-stroked-button
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

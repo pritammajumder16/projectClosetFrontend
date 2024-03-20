@@ -18,31 +18,31 @@ export class ProductsListComponent {
   public length = 10;
   public pageSize = 10;
   public currentPage = 1;
-  displayedColumns = ['categoryId', 'categoryName', 'createdBy', 'action'];
+  displayedColumns = ['productId', 'productName', 'createdBy', 'action'];
   ngOnInit() {
     this.getDatasource(this.currentPage,this.pageSize);
   }
   getDatasource(pageIndex:Number,pageSize:Number) {
     const obj:any = {pageIndex,pageSize}
     this._backendService
-      .makeGetApiCall('admin/allCategories',obj)
+      .makeGetApiCall('admin/allProducts',obj)
       .subscribe((res: any) => {
         if (res['success']) {
-          this.dataSource = res.data.categories;
+          this.dataSource = res.data.products;
           this.length= res.data.count;
         }
       });
   }
   productCreationRoute() {
-    this._router.navigate(["/admin/productCreate"])
+    this._router.navigate(["/admin/productCreate"],{queryParams:{action:"create"}})
   }
   edit(element: any) {
-    this.dialogOpenSubGet('admin/category', 'update', element);
+    this._router.navigate(["/admin/productCreate"],{queryParams:{action:"update",productId:element.productId}})
   }
   deleteE(element: any) {
     this._backendService
-      .makePostApiCall('admin/categoryDelete', {
-        categoryId: element.categoryId,
+      .makePostApiCall('admin/deleteProduct', {
+        productId: element.productId,
       })
       .subscribe((res: any) => {
         if (res.success) {
@@ -50,26 +50,7 @@ export class ProductsListComponent {
         }
       });
   }
-  public dialogOpenSubGet(route: string, action: string, element?: any) {
-    const data: any = { data: { action } };
-    if (element) {
-      data.data.element = element;
-    }
-    this._dialog
-      .open(CategoryCreateComponent, data)
-      .afterClosed()
-      .subscribe((res: any) => {
-        if (res) {
-          this._backendService
-            .makeGetApiCall(route, res)
-            .subscribe((res: any) => {
-              if (res.success) {
-                this.getDatasource(this.currentPage,this.pageSize);
-              }
-            });
-        }
-      });
-  }
+ 
   page(event:any){
     this.pageSize=event.pageSize
     this.currentPage=event.pageIndex+1;

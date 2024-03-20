@@ -21,7 +21,6 @@
           />
         </mat-form-field>
       </div>
-
       <div class="fieldDiv">
         <mat-label>Product Name</mat-label>
         <mat-form-field appearance="outline">
@@ -43,9 +42,12 @@
         </mat-form-field>
       </div>
     </div>
-
-    <mat-label>Product Description</mat-label>
-    <textarea matInput rows="5" formControlName="description"></textarea>
+    <div class="innerDiv">
+      <div class="fieldDiv">
+        <mat-label>Product Description</mat-label>
+        <textarea matInput rows="5" formControlName="description"></textarea>
+      </div>
+    </div>
     <div class="innerDiv">
       <div class="fieldDiv">
         <mat-label>Size</mat-label>
@@ -67,24 +69,47 @@
         </mat-form-field>
       </div>
     </div>
-    <div class="innerDiv" *ngIf="allFiles.length > 0">
+    <div class="innerFileDiv" *ngIf="allFilesBase64.length > 0">
       <mat-label>Preview</mat-label>
-
-      <img *ngFor="let file of allFiles" [src]="file" alt="" />
+      <div class="imageInnerDiv">
+        <div class="imageDiv" *ngFor="let file of allFilesBase64; index as i">
+          <img [src]="file" alt="" />
+          <mat-icon class="pointer" (click)="deleteFile(i)">delete</mat-icon>
+        </div>
+      </div>
     </div>
     <div class="innerDiv">
       <div class="fieldDiv">
-        <mat-label>Product Images (only jpg/jpeg/png)</mat-label>
+        <mat-label>Product Images</mat-label>
         <button
-          style="width: max-content"
-          mat-button
+          style="width: max-content; margin: 1rem 0px"
+          mat-stroked-button
+          type="button"
           (click)="fileInput.click()"
         >
           Upload File
         </button>
         <input #fileInput type="file" hidden (change)="fileUpload($event)" />
+        <mat-error
+          style="margin-bottom: 1rem"
+          *ngIf="productForm.controls['productImages'].errors?.['required'] && productForm.touched"
+          >At least one Image required</mat-error
+        >
+      </div>
+      <div class="fieldDiv">
+        <mat-label>Category</mat-label>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="categoryId">
+            @for (category of categoryList; track category) {
+            <mat-option [value]="category.categoryId">
+              {{ category.categoryName }}
+            </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
       </div>
     </div>
+    <mat-divider></mat-divider>
     <div class="sbtCancelBtns">
       <button type="submit" mat-stroked-button>
         {{ action == "create" ? "Create" : "Update" }}

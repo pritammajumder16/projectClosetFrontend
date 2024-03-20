@@ -1,0 +1,93 @@
+<div class="outerDiv" *ngIf="productData">
+  <div class="topDetails">
+    <div class="leftImages">
+      <div class="smallImageContainer">
+        <div
+          class="previewImages"
+          *ngFor="let productImage of productData.productImages"
+          (click)="changePreview(productImage)"
+        >
+          <img [src]="fileUri + productImage" alt="Cannot load images" />
+        </div>
+      </div>
+      <div class="rightPreview thumbnail">
+        <img [src]="fileUri + previewImage" alt="Cannot load images" />
+      </div>
+    </div>
+    <!-- Secondary -->
+    <div class="secondaryImageContainer">
+      <div
+        class="previewImages"
+        *ngFor="let productImage of productData.productImages"
+        (click)="changePreview(productImage)"
+      >
+        <img [src]="fileUri + productImage" alt="Cannot load images" />
+      </div>
+    </div>
+
+    <div class="rightDetails">
+      <span class="bold" style="font-size: large">{{
+        productData.productName
+      }}</span>
+      <span class="small">{{ productData.categoryName }}</span>
+      <span class="marginHalfTB">{{
+        productData.price | currency : "INR"
+      }}</span>
+      <div class="sizeContainer marginHalfTB">
+        <span style="width: 5rem">Size: &nbsp;</span>
+        <div class="sizeBox box" *ngFor="let size of productData.size">
+          {{ size }}
+        </div>
+      </div>
+      <div class="sizeContainer marginHalfTB">
+        <span style="width: 5rem">Quantity: &nbsp;</span>
+        <div class="priceBox box">
+          <span
+            ><span class="pointer" (click)="quantityChange(-1)">-</span
+            >{{ quantity }}</span
+          ><span class="pointer" (click)="quantityChange(1)">+</span>
+        </div>
+      </div>
+
+      <div class="addressBox marginHalfTB">
+        <span style="width: 5rem">Shipping Address: &nbsp;</span>
+        <span
+          >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam
+          dolorem at architecto pariatur! Dicta, aliquid.</span
+        >
+      </div>
+      <div class="marginHalfTB">
+        <button (click)="reviewProduct()" mat-stroked-button>
+          Review Product
+        </button>
+      </div>
+      <span class="marginHalfTB"
+        ><span class="bold">Total Price: &nbsp; </span>
+        <span class="bold">{{
+          productData.price * quantity + 100 | currency : "INR"
+        }}</span>
+        <span class="small"
+          >&nbsp;(Shipping cost &nbsp;{{ 100 | currency : "INR" }})</span
+        >
+      </span>
+      <div class="marginHalfTB">
+        <button
+          (click)="addToCart()"
+          style="margin-right: 0.5rem"
+          mat-stroked-button
+        >
+          Add To Cart</button
+        ><button 
+        (click)="checkOut()" mat-stroked-button>Checkout</button>
+      </div>
+    </div>
+  </div>
+  <div class="bottomDetails">
+    <div class="descriptionContainer">
+      <mat-tab-group>
+        <mat-tab label="Description"> {{ productData.description }} </mat-tab>
+        <mat-tab label="Reviews"> Content 2 </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

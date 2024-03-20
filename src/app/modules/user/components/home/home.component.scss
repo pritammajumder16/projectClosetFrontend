@@ -1,0 +1,57 @@
+.outerDiv{
+    padding: 1rem;
+    display: flex;
+    .sideFilter{
+        max-width: 15rem;
+    }
+    app-side-filter{
+        display: none;
+    }
+    .cardCover{
+        display: flex;
+        flex-direction: column;
+        .cardsInnerDiv{
+            display: flex;
+            justify-content: space-evenly;
+            max-height: max-content;
+            flex-wrap: wrap;
+            .cards:hover{
+                box-shadow: 0 2px 1px -1px rgba(0,0,0,1), 
+                0 1px 1px 0 rgba(0,0,0,1), 
+                0 1px 3px 0 rgba(0,0,0,1);;
+            }
+            .cards{
+                cursor: pointer;
+                margin: 0.5rem;
+                padding: 0.5rem;
+                width: 15rem;
+                height: max-content;
+                .imgDiv{
+                    height: 20rem;
+                    max-width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    img{
+                        height: 100%;
+                        width: max-content;
+                        overflow: hidden;
+                    }
+                }
+            }
+        }
+        .cardtopHeader{
+            display: flex;
+            margin-left: 1rem;
+            justify-content: space-between;
+        }
+    }
+}
+@media only screen and (min-width: 621px) {
+    app-filter-drawers{
+        display: none;
+    }
+    app-side-filter{
+        display: block !important;
+    }
+}

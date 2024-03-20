@@ -1,0 +1,119 @@
+.outerDiv{
+    padding: 1rem;
+    .topDetails{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    .secondaryImageContainer{
+        display: none;
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+    }
+    .previewImages{
+        cursor: pointer;
+        display: flex;
+        height: 10rem;
+        width: 8rem;
+        overflow: hidden;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 0.5rem;
+    }
+    .leftImages{
+        display: flex;
+        .smallImageContainer{
+            display: flex;
+            flex-direction: column;
+            height: 31.5rem;
+        }
+       
+        .rightPreview{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 31rem;
+            width: max-content;
+            overflow: hidden;
+        }
+        img{
+            height: 100%;
+            width:max-content;
+
+        }
+    }
+    .rightDetails{
+        padding: 1rem;
+        display: flex;
+        max-width: calc(100% - 30rem);
+        min-width: 20rem;
+        flex-direction: column;
+        .sizeContainer{
+            display: flex;
+            align-items: center;
+            .addressBox{
+                max-width: 50%;
+            }
+            .sizeBox{
+                display: flex;
+                width: max-content;
+                padding: 0.2rem;
+            }
+            .priceBox{
+                display: flex;
+                width: max-content;
+                align-items: center;
+                justify-content: space-evenly;
+                span{
+                    padding: 0.5rem;
+                }
+            }
+            .box{
+                border-radius: 0.2rem;
+                border: 1px solid black;
+                box-shadow: 0 2px 1px -1px rgba(0,0,0,1), 
+                0 1px 1px 0 rgba(0,0,0,1), 
+                0 1px 3px 0 rgba(0,0,0,1);;
+            }
+        }
+    }
+}
+.thumbnail { 
+    top:-50px; 
+    left:-35px; 
+    display:block; 
+    z-index:999; 
+    cursor: pointer; 
+    -webkit-transition-property: all; 
+    -webkit-transition-duration: 0.3s; 
+    -webkit-transition-timing-function: ease; 
+    } 
+    
+    /*change the number below to scale to the appropriate size*/ 
+    .thumbnail:hover { 
+    transform: scale(3); 
+    
+    }
+    @media only screen and (max-width: 621px) {
+        .rightDetails{
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+        .secondaryImageContainer{
+            display: flex !important; 
+        }
+        .smallImageContainer{
+            display: none !important;
+        }
+        .leftImages{
+            width: 100% !important;
+            display: flex !important;
+            justify-content: center !important;
+        }
+        .previewImages{
+            margin-right: 0.5rem;
+            margin-top: 1rem;
+        }
+
+    }

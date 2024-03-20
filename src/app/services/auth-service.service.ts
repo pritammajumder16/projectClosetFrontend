@@ -23,6 +23,7 @@ export class AuthServiceService {
   private roleId: number | undefined;
   private roleName: number | undefined;
   setUserData(data: { [key: string]: any }) {
+    console.log("set user data")
     sessionStorage.setItem('token', data['authToken'] || '');
     sessionStorage.setItem('userName', data['userName'] || '');
     sessionStorage.setItem('email', data['email'] || '');
@@ -39,6 +40,7 @@ export class AuthServiceService {
     this.token = sessionStorage.getItem('token') || undefined;
     this.userName = sessionStorage.getItem('userName') || undefined;
     this.email = sessionStorage.getItem('email') || undefined;
+    console.log(this.token,this.userName,this.email)
     const timerExpiry = parseInt(sessionStorage.getItem('timerExpiry') || '0');
     const timerValidity = timerExpiry - new Date().getTime();
     if (timerValidity > 0) {
@@ -62,7 +64,7 @@ export class AuthServiceService {
     }
   }
   silentLoginReAquireTokens() {
-    console.log('Silent Login triggered');
+    console.log('Silent Login triggered', this.getData());
     if (this.userName && this.email) {
       this._backendService
         .makeGetApiCall('auth/silentLogin', {

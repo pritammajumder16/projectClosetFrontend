@@ -28,6 +28,9 @@ mat-form-field {
 .pointer{
   cursor: pointer;
 }
+.flex{
+  display: flex;
+}
 .alignCenterFlex{
   display: flex;
   align-items: center;
@@ -54,4 +57,37 @@ mat-form-field {
   .mat-mdc-text-field-wrapper {
     background-color: EBEBE4 !important;
   }
+}
+mat-drawer-container{
+  position: static;
+}
+
+mat-drawer{
+  position: fixed !important;
+  max-width: 19rem;
+  left: 0;
+}
+.mat-drawer-transition .mat-drawer-backdrop{
+  position: fixed !important;
+}
+.mat-drawer-content{
+  overflow: hidden !important;
+}
+.bold{
+  font-weight: bold;
+}
+.small {
+  font-size: small;
+}
+.elipssis{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.marginHalfTB{
+  margin: 0.5rem 0px;
+}
+.mat-mdc-tab-body-content{
+  height: max-content !important;
+  overflow: hidden;
 }

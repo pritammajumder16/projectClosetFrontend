@@ -5,6 +5,8 @@ import { CategoryComponent } from './components/category/category.component';
 import { CategoryCreateComponent } from './components/category-create/category-create.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { ProductCreateComponent } from './components/product-create/product-create.component';
+import { UsersListComponent } from './components/users-list/users-list.component';
+import { OrdersComponent } from './components/orders/orders.component';
 
 const routes: Routes = [
   {
@@ -20,6 +22,11 @@ const routes: Routes = [
   },
   {
     path:"productCreate",component:ProductCreateComponent
+  },
+  {
+    path:"manageUsers",component:UsersListComponent
+  },{
+    path:"orders", component:OrdersComponent
   }
 ];
 
