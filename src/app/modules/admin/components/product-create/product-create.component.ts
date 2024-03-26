@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../../../../common/error-dialog/error-dialog.component';
 import { constants } from '../../../../constants/constants';
+import { Editor } from 'ngx-editor';
 
 @Component({
   selector: 'app-product-create',
@@ -36,8 +37,13 @@ export class ProductCreateComponent {
     categoryId: new FormControl('', Validators.required),
     categoryName: new FormControl('', Validators.required),
   });
+  editor!: Editor;
+  html = '';
+
+
 
   async ngOnInit() {
+    this.editor = new Editor();
     const res:any = await this.getAllCategories()   
     if (res.success) {
       this.categoryList = res.data;

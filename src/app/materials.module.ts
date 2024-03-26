@@ -14,15 +14,19 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import {TextFieldModule} from '@angular/cdk/text-field';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatSliderModule} from '@angular/material/slider';import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatTabsModule} from '@angular/material/tabs';import {MatExpansionModule} from '@angular/material/expansion';
-
-
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { NgxEditorModule } from 'ngx-editor';
+import { FormsModule } from '@angular/forms';
+import { MatStepperModule } from '@angular/material/stepper';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule,],
   exports: [
     MatIconModule,
     MatDialogModule,
@@ -37,8 +41,18 @@ import {MatTabsModule} from '@angular/material/tabs';import {MatExpansionModule}
     MatButtonModule,
     MatSidenavModule,
     MatDividerModule,
-    MatTableModule,MatExpansionModule,
-    MatPaginatorModule,TextFieldModule,MatCheckboxModule,MatSliderModule,MatTooltipModule,MatTabsModule
+    MatTableModule,
+    MatExpansionModule,
+    MatPaginatorModule,
+    TextFieldModule,
+    MatCheckboxModule,
+    MatSliderModule,
+    MatTooltipModule,
+    MatTabsModule,
+    NgxEditorModule,
+    FormsModule,
+    MatStepperModule,
   ],
+  providers:[]
 })
 export class materialModule {}

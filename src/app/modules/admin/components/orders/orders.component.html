@@ -46,7 +46,13 @@
             <div class="lastDetails">
                 <span>Ordered By: {{order.createdBy}}</span>
                 <span>Ordered on: {{order.creationTime|date}}</span>
-                <span>Shipping Address: {{order.shippingAddress}}</span>
+                <div class="address">
+                  <span class="bold">Shipping Address:</span>
+                  <span>Street: {{order.shippingAddress?.street}}</span>
+                  <span>City: {{order.shippingAddress?.city}}</span>
+                  <span>State: {{order.shippingAddress?.state}}</span>
+                  <span>Zipcode: {{order.shippingAddress?.zip}}</span>
+                </div>
             </div>
             <div class="innerBtns">
                 <button  (click)="shipOrder(order.orderId)" *ngIf="order.status=='pending'" mat-stroked-button>Ship Order</button> 

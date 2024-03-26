@@ -4,6 +4,8 @@ import { HomeComponent } from './components/home/home.component';
 import { ProductComponent } from './components/product/product.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { OrdersComponent } from './components/orders/orders.component';
+import { InfoPagesDisplayComponent } from './components/info-pages-display/info-pages-display.component';
+import { CanActivate } from '../../guards/authguard.guard';
 
 const routes: Routes = [
   {
@@ -14,10 +16,15 @@ const routes: Routes = [
   {
     path: 'checkout',
     component: CheckoutComponent,
+    canActivate:[CanActivate]
   },
   {
     path: 'orders',
     component: OrdersComponent,
+    canActivate:[CanActivate]
+  }, {
+    path: 'infoPage',
+    component: InfoPagesDisplayComponent,
   },
 ];
 

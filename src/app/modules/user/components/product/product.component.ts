@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BackendServiceService } from '../../../../services/backend-service.service';
 import { AuthServiceService } from '../../../../services/auth-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SuccessDialogComponent } from '../../../../common/success-dialog/success-dialog.component';
+import { ReviewDialogComponent } from '../review-dialog/review-dialog.component';
+import { ErrorDialogComponent } from '../../../../common/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-product',
@@ -16,13 +18,18 @@ export class ProductComponent {
     private _backendService: BackendServiceService,
     private _authService: AuthServiceService,
     private _router: Router,
-    private _dialog: MatDialog
+    private _dialog: MatDialog,private renderer: Renderer2
   ) {}
   productId!: number;
   public productData!: any;
   public fileUri: string = '';
   public previewImage!: string;
   public quantity: number = 1;
+  enlargedImage: boolean = false; // Flag to track whether the enlarged image is visible
+  enlargedPositionX: number = 0; // X coordinate for positioning enlarged image
+  enlargedPositionY: number = 0; 
+  selectedSize: string=""
+  @ViewChild('enlargedImageRef', { static: true }) enlargedImageRef!: ElementRef<HTMLImageElement>;
   ngOnInit() {
     this.fileUri = this._backendService.fileURI;
     this._activatedRoute.queryParams.subscribe(async (params: any) => {
@@ -45,12 +52,33 @@ export class ProductComponent {
     if (this.quantity + change >= 1) this.quantity = this.quantity + change;
     else this.quantity = 1;
   }
-  reviewProduct() {}
+  reviewProduct() {
+    this._dialog
+      .open(ReviewDialogComponent)
+      .afterClosed()
+      .subscribe((result) => {
+        if (result && result.rating)
+          this._backendService
+            .makePostApiCall('user/postReview', {
+              productId: this.productData.productId,
+              rating: result.rating,
+              review: result.review,
+            })
+            .subscribe((res: any) => {
+              if(res.success)
+              this._dialog.open(SuccessDialogComponent,{data:{message:"Review successfully added"}})
+            });
+      });
+  }
   async addToCart() {
+    if(!this.selectedSize)
+    {this._dialog.open(ErrorDialogComponent,{data:{message:"Please select a size"}})
+  return ;}
     const obj = {
       productId: this.productData.productId,
       quantity: this.quantity,
       price: this.productData.price,
+      size:this.selectedSize
     };
     if (this._authService.getIsAuthenticated()) {
       const res: any = await this._backendService
@@ -71,5 +99,33 @@ export class ProductComponent {
     } else {
       this._router.navigate(['auth/login']);
     }
+  }
+// Y coordinate for positioning enlarged image
+
+  showEnlargeImage() {
+    this.enlargedImage = true;
+  }
+
+  hideEnlargeImage() {
+    this.enlargedImage = false;
+  }
+
+  
+  updateEnlargedPosition(event: MouseEvent) {
+    const thumbnailRect = (event.currentTarget as HTMLElement).getBoundingClientRect();
+    this.enlargedPositionX = event.clientX - thumbnailRect.left;
+    this.enlargedPositionY = event.clientY - thumbnailRect.top;
+    this.updateEnlargedImagePosition();
+  }
+
+  private updateEnlargedImagePosition() {
+    if (this.enlargedImageRef && this.enlargedImageRef.nativeElement?.style) {
+      const enlargedImage = this.enlargedImageRef.nativeElement;
+      this.renderer.setStyle(enlargedImage, 'left', `${this.enlargedPositionX}px`);
+      this.renderer.setStyle(enlargedImage, 'top', `${this.enlargedPositionY}px`);
+    }
+  }
+  selectSize(size: string) {
+    this.selectedSize = size; // Update the selected size
   }
 }

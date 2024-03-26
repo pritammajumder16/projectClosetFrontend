@@ -1,68 +1,143 @@
-<div class="outerDiv" >
+<div class="outerDiv">
   <span class="bold">Cart</span>
-  <div class="leftDiv" >
+  <div class="leftDiv">
     <span *ngIf="!cartItems.length">No items in your cart</span>
-    <div class="tableDiv" *ngIf="cartItems.length">
-
-    <table
-      mat-table
-      [dataSource]="cartItems"
-      class=" categoryTable"
-    >
-      <!--- Note that these columns can be defined in any order.
-                  The actual rendered columns are set as a property on the row definition" -->
-
-      <!-- Position Column -->
-      <ng-container matColumnDef="title">
-        <td mat-cell *matCellDef="let element" class="cartItems tdItem">
-          <img
-            [src]="fileUri + element.productImages[0]"
-            alt="Could not load image"
-          />
-          <div class="cartTitle">
-            <span class="elipssis bold">{{ element.productName }}</span>
-            <span>Size: {{ element.size }}</span>
-          </div>
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="unitPrice">
-        <td mat-cell *matCellDef="let element" class="tdItem">
-          <span>{{ element.price }}</span>
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="quantity">
-        <td mat-cell *matCellDef="let element" class="tdItem">
-          <div class="priceBox box">
-            <span
-              ><span class="pointer" (click)="quantityChange(-1, element)"
-                >-</span
-              >{{ element.quantity }}</span
-            ><span class="pointer" (click)="quantityChange(1, element)">+</span>
-          </div>
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="totalPrice" class="tdItem">
-        <td mat-cell *matCellDef="let element">
-          {{ element.quantity * element.price + 100|currency:"INR" }}
-        </td>
-      </ng-container>
-
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-    
-</div>
-    <div class="rightDiv" *ngIf="cartItems.length">
-        <div class="rightBox">
-            <span class="bold insideDiv" style="color: black;"> Order Summary</span>
-            <span class="insideDiv"><span>Price:</span> <span>{{totalPriceWithoutShipping |currency:"INR"}}</span></span>
-            <span class="insideDiv"><span>Shipping:</span> <span>{{cartItems.length*100 |currency:"INR"}}</span></span>
-            <span class="insideDiv"><span>Shipping: </span> <span>{{0 |currency:"INR"}}</span></span>
-            <mat-divider class="insideDiv"></mat-divider>
-            <span class="bold insideDiv" style="color: black;"><span>TotalPrice:</span> <span>{{totalPriceWithoutShipping+cartItems.length*100 |currency:"INR"}}</span></span>
-            <button class="checkoutBtn insideDiv" mat-stroked-button (click)="checkOut()">Checkout</button>
-        </div>
-    </div>
   </div>
-  <div class="rightDiv"></div>
+  <mat-stepper *ngIf="cartItems.length" #stepper>
+    <mat-step>
+      <form>
+        <ng-template matStepLabel>Details</ng-template>
+        <span class="bold">Address </span>
+        <mat-divider></mat-divider>
+        <form [formGroup]="addressForm" >
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Street:</mat-label>
+              <input
+                matInput
+                type="text"
+                id="street"
+                matInput
+                formControlName="street"
+            /></mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>City:</mat-label>
+            <input matInput type="text" id="city" formControlName="city" />
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>State:</mat-label>
+            <input matInput type="text" id="state" formControlName="state" />
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Zip Code:</mat-label>
+            <input matInput type="text" id="zip" formControlName="zip" />
+            </mat-form-field>
+          </div>
+          <button
+            type="submit"
+            mat-button
+            matStepperNext
+            [disabled]="!addressForm.valid"
+          >
+            Next
+          </button>
+        </form>
+        <div></div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Checkout</ng-template>
+      <div class="leftDiv">
+        <div class="tableDiv" *ngIf="cartItems.length">
+          <table mat-table [dataSource]="cartItems" class="categoryTable">
+            <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="title">
+              <td mat-cell *matCellDef="let element" class="cartItems tdItem">
+                <img
+                  [src]="fileUri + element.productImages[0]"
+                  alt="Could not load image"
+                />
+                <div class="cartTitle">
+                  <span class="elipssis bold">{{ element.productName }}</span>
+                  <span>Size: {{ element.size }}</span>
+                </div>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="unitPrice">
+              <td mat-cell *matCellDef="let element" class="tdItem">
+                <span>{{ element.price }}</span>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="quantity">
+              <td mat-cell *matCellDef="let element" class="tdItem">
+                <div class="priceBox box">
+                  <span
+                    ><span class="pointer" (click)="quantityChange(-1, element)"
+                      >-</span
+                    >{{ element.quantity }}</span
+                  ><span class="pointer" (click)="quantityChange(1, element)"
+                    >+</span
+                  >
+                </div>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="totalPrice" class="tdItem">
+              <td mat-cell *matCellDef="let element">
+                {{ element.quantity * element.price + 100 | currency : "INR" }}
+              </td>
+            </ng-container>
+
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </div>
+        <div class="rightDiv" *ngIf="cartItems.length">
+          <div class="rightBox">
+            <span class="bold insideDiv" style="color: black">
+              Order Summary</span
+            >
+            <span class="insideDiv"
+              ><span>Price:</span>
+              <span>{{
+                totalPriceWithoutShipping | currency : "INR"
+              }}</span></span
+            >
+            <span class="insideDiv"
+              ><span>Shipping:</span>
+              <span>{{ cartItems.length * 100 | currency : "INR" }}</span></span
+            >
+            <span class="insideDiv"
+              ><span>Shipping: </span>
+              <span>{{ 0 | currency : "INR" }}</span></span
+            >
+            <mat-divider class="insideDiv"></mat-divider>
+            <span class="bold insideDiv" style="color: black"
+              ><span>TotalPrice:</span>
+              <span>{{
+                totalPriceWithoutShipping + cartItems.length * 100
+                  | currency : "INR"
+              }}</span></span
+            >
+            <button
+              class="checkoutBtn insideDiv"
+              mat-stroked-button
+              (click)="checkOut()"
+            >
+              Checkout
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+  </mat-stepper>
 </div>

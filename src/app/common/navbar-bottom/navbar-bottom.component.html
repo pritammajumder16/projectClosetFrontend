@@ -18,14 +18,14 @@
       >
     </div>
 
-    <div class="innerDiv logoBtn">
-      <mat-icon>favorite</mat-icon>
-      <span>Favorite</span>
-    </div>
 
     <div class="innerDiv logoBtn">
       <mat-icon> shopping_bag </mat-icon>
-      <span>Cart</span>
+      <a routerLink="/checkout">Cart</a>
+    </div>
+    <div class="innerDiv logoBtn">
+      <mat-icon> shopping_bag </mat-icon>
+      <a routerLink="/orders">Orders</a>
     </div>
     <div class="innerDiv logoBtn" *ngIf="isAuthenticated">
       <span class="alignCenterFlex pointer">

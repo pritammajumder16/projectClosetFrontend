@@ -45,7 +45,10 @@
     <div class="innerDiv">
       <div class="fieldDiv">
         <mat-label>Product Description</mat-label>
-        <textarea matInput rows="5" formControlName="description"></textarea>
+        <div class="NgxEditor__Wrapper">
+          <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+          <ngx-editor [editor]="editor" [ngModel]="html" formControlName="description" [disabled]="false" [placeholder]="'Type here...'"></ngx-editor>
+        </div>
       </div>
     </div>
     <div class="innerDiv">

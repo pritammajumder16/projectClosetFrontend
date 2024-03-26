@@ -1,0 +1,21 @@
+.outerDiv{
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .buttons{
+        display: flex;
+        margin: 1rem;
+        width: 100%;
+    }
+    .star {
+        cursor: pointer;
+        font-size: 24px;
+        color: #ccc;
+      }
+      
+      .star.filled {
+        color: #ffbb00;
+      }
+}

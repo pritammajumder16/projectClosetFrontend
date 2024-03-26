@@ -42,6 +42,13 @@
 
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
+      <div class="address">
+      <span class="bold">Shipping Address:</span>
+      <span>Street: {{order.shippingAddress?.street}}</span>
+      <span>City: {{order.shippingAddress?.city}}</span>
+      <span>State: {{order.shippingAddress?.state}}</span>
+      <span>Zipcode: {{order.shippingAddress?.zip}}</span>
+    </div>
     </mat-expansion-panel>
   </mat-accordion>
 </div>

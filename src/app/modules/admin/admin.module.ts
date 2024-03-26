@@ -13,6 +13,7 @@ import { ProductCreateComponent } from './components/product-create/product-crea
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { UserUpdateDialogComponent } from './components/user-update-dialog/user-update-dialog.component';
 import { OrdersComponent } from './components/orders/orders.component';
+import { InfoPagesComponent } from './components/info-pages/info-pages.component';
 
 
 
@@ -26,6 +27,7 @@ import { OrdersComponent } from './components/orders/orders.component';
     UsersListComponent,
     UserUpdateDialogComponent,
     OrdersComponent,
+    InfoPagesComponent,
   ],
   imports: [
     CommonModule,materialModule,adminRoutingModule,ReactiveFormsModule,FormsModule

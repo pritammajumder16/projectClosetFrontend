@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthServiceService } from '../../services/auth-service.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,8 +9,18 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
   public title:string = "Project Closet"
-  constructor(private _router:Router){}
+  public roleId:number|undefined;
+  constructor(private _router:Router,private authService:AuthServiceService){}
+  ngOnInit(){
+    if(this.authService.getIsAuthenticated()){
+      this.roleId=this.authService.getData().roleId
+    }
+    
+  }
   routeToHome(){
     this._router.navigate(["/"])
+  }
+  navigateToDetails(name:string) {
+    this._router.navigate(['infoPage'], { queryParams: { name } });
   }
 }

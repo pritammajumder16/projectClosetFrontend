@@ -1,0 +1,28 @@
+<div class="outerDiv">
+  <div class="pageInfo">
+    <span class="bold"> About us page info:</span>
+    <mat-divider></mat-divider>
+    <div class="NgxEditor__Wrapper">
+      <ngx-editor-menu [editor]="editor1"> </ngx-editor-menu>
+      <ngx-editor
+        [editor]="editor1"
+        [(ngModel)]="html1"
+        [placeholder]="'Type here...'"
+      ></ngx-editor>
+    </div>
+    <button mat-stroked-button (click)="save('aboutUs',html1)">Save</button>
+  </div>
+  <div class="pageInfo">  <span class="bold"> Contact us page info:</span>
+    <mat-divider></mat-divider>
+    <div class="NgxEditor__Wrapper">
+      <ngx-editor-menu [editor]="editor2"> </ngx-editor-menu>
+      <ngx-editor
+        [editor]="editor2"
+        [(ngModel)]="html2"
+        [placeholder]="'Type here...'"
+      ></ngx-editor>
+    </div>
+    
+    <button mat-stroked-button (click)="save('contactUs',html2)">Save</button>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+.outerDiv{
+    padding: 1rem;
+    width: 100%;
+    .pageInfo{
+        padding: 1rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        mat-divider{
+            margin: 0.5rem 0px;
+        }
+        button{
+            width: max-content;
+        }
+    }
+}

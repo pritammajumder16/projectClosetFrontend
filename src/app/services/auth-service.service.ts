@@ -23,7 +23,6 @@ export class AuthServiceService {
   private roleId: number | undefined;
   private roleName: number | undefined;
   setUserData(data: { [key: string]: any }) {
-    console.log("set user data")
     sessionStorage.setItem('token', data['authToken'] || '');
     sessionStorage.setItem('userName', data['userName'] || '');
     sessionStorage.setItem('email', data['email'] || '');

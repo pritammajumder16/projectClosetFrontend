@@ -7,6 +7,7 @@ import { ProductsListComponent } from './components/products-list/products-list.
 import { ProductCreateComponent } from './components/product-create/product-create.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { OrdersComponent } from './components/orders/orders.component';
+import { InfoPagesComponent } from './components/info-pages/info-pages.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,8 @@ const routes: Routes = [
     path:"manageUsers",component:UsersListComponent
   },{
     path:"orders", component:OrdersComponent
+  },{
+    path:"infoPages", component:InfoPagesComponent
   }
 ];
 

@@ -10,9 +10,28 @@
           <img [src]="fileUri + productImage" alt="Cannot load images" />
         </div>
       </div>
-      <div class="rightPreview thumbnail">
-        <img [src]="fileUri + previewImage" alt="Cannot load images" />
+      <div
+        class="rightPreview thumbnail"
+        (mousemove)="updateEnlargedPosition($event)"
+        (mouseenter)="showEnlargeImage()"
+        (mouseleave)="hideEnlargeImage()"
+      >
+        <img
+          class="preview-image"
+          [src]="fileUri + previewImage"
+          alt="Cannot load images"
+        />
       </div>
+
+      <img
+        class="enlarged-image"
+        *ngIf="enlargedImage"
+        [src]="fileUri + previewImage"
+        alt="Cannot load images"
+        [style.left.px]="enlargedPositionX"
+        [style.top.px]="enlargedPositionY"
+        #enlargedImageRef
+      />
     </div>
     <!-- Secondary -->
     <div class="secondaryImageContainer">
@@ -29,13 +48,31 @@
       <span class="bold" style="font-size: large">{{
         productData.productName
       }}</span>
+
       <span class="small">{{ productData.categoryName }}</span>
+      <div class="marginHalfTB">
+        <span
+          *ngFor="let _ of [1, 2, 3, 4, 5]; let i = index"
+          class="star"
+          [ngClass]="{ filled: i < productData.rating }"
+        >
+          &#9733;
+        </span>
+        <span class="small">
+          (Reviewed by {{ productData.reviews.length }} people)</span
+        >
+      </div>
       <span class="marginHalfTB">{{
         productData.price | currency : "INR"
       }}</span>
       <div class="sizeContainer marginHalfTB">
         <span style="width: 5rem">Size: &nbsp;</span>
-        <div class="sizeBox box" *ngFor="let size of productData.size">
+        <div
+          class="sizeBox box pointer"
+          *ngFor="let size of productData.size"
+          [class.selected]="selectedSize === size"
+          (click)="selectSize(size)"
+        >
           {{ size }}
         </div>
       </div>
@@ -50,11 +87,8 @@
       </div>
 
       <div class="addressBox marginHalfTB">
-        <span style="width: 5rem">Shipping Address: &nbsp;</span>
-        <span
-          >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam
-          dolorem at architecto pariatur! Dicta, aliquid.</span
-        >
+        <span style="width: 5rem">Shipping Country: &nbsp;</span>
+        <span>India</span>
       </div>
       <div class="marginHalfTB">
         <button (click)="reviewProduct()" mat-stroked-button>
@@ -77,16 +111,29 @@
           mat-stroked-button
         >
           Add To Cart</button
-        ><button 
-        (click)="checkOut()" mat-stroked-button>Checkout</button>
+        ><button (click)="checkOut()" mat-stroked-button>Checkout</button>
       </div>
     </div>
   </div>
   <div class="bottomDetails">
     <div class="descriptionContainer">
       <mat-tab-group>
-        <mat-tab label="Description"> {{ productData.description }} </mat-tab>
-        <mat-tab label="Reviews"> Content 2 </mat-tab>
+        <mat-tab label="Description">
+          <div [innerHTML]="productData.description"></div>
+        </mat-tab>
+        <mat-tab label="Reviews">
+          <div class="reviewOuter">
+            <mat-card
+              class="innerReview"
+              *ngFor="let review of productData.reviews"
+            >
+              <span class="bold">Rating: {{ review.rating }}</span>
+              <span>Reviewed By: {{ review.createdBy }}</span>
+              <span>Reviewed On: {{ review.reviewOn | date }}</span>
+              <span>Review: {{ review.text }}</span>
+            </mat-card>
+          </div>
+        </mat-tab>
       </mat-tab-group>
     </div>
   </div>

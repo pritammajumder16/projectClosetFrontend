@@ -26,10 +26,10 @@
 
   <div class="outerDiv2">
     <div class="outerItem">
-      <a class="innerItem" href="#">About Us</a>
-      <a class="innerItem" href="#">Blog</a>
-      <a class="innerItem" href="#">Contact Us</a>
-      <a class="innerItem" href="#">Help & Support</a>
+      <a class="innerItem pointer" (click)="navigateToDetails('aboutUs')">About Us</a>
+      <a class="innerItem pointer" href="#">Blog</a>
+      <a class="innerItem pointer" (click)="navigateToDetails('contactUs')">Contact Us</a>
+      <a class="innerItem pointer" *ngIf="this.roleId==1" routerLink="admin/home">Admin</a>
     </div>
     <div class="outerItem">
       <a href="#" class="innerItem innerIcon fa fa-instagram"></a

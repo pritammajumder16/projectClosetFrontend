@@ -5,7 +5,7 @@
   <div class="cardCover">
     <div class="cardtopHeader">
 
-      <span class="bold">Recommended</span>
+      <span class="bold">{{"recommended" |translate}}</span>
       <app-filter-drawers [allData]="allData" [productCount]="length"  (filterChangeTrigger)="filterChangeTrigger($event)" *ngIf="showSideFilter" [categories]="categoryList"></app-filter-drawers>
     </div>
     <mat-divider style="margin-left: 1rem;"></mat-divider>
@@ -20,7 +20,16 @@
         </div>
         <div class="bold elipssis" matTooltip="{{product.productName}}">{{product.productName}}</div>
         <div class="small elipssis" matTooltip="{{product.categoryName}}">{{product.categoryName}}</div>
-        <div class="elipssis">{{getPrice(product.price)|currency:"INR"}}</div>
+        <div class="elipssis">{{getPrice(product.price)|currency:"INR"}}</div> <div>
+          <span
+            *ngFor="let _ of [1, 2, 3, 4, 5]; let i = index"
+            class="star"
+            [ngClass]="{ filled: i < product.rating }"
+          >
+          &#9733;
+        </span> 
+            <span class="small"> ({{ product.reviews.length}} reviews)</span>
+        </div>
         <!-- <div class="flex"><mat-icon>add_shopping_cart</mat-icon> <span>Add to cart</span></div> -->
       </mat-card>
     </div>

@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { BackendServiceService } from '../../../../services/backend-service.service';
 import { AuthServiceService } from '../../../../services/auth-service.service';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 declare var paypal:any;
 @Component({
   selector: 'app-checkout',
@@ -11,16 +12,22 @@ declare var paypal:any;
 export class CheckoutComponent {
   constructor(
     private _backendService: BackendServiceService,
-    private _authService: AuthServiceService,private _router:Router
+    private _authService: AuthServiceService,private _router:Router,private formBuilder: FormBuilder
   ) {}
-  @ViewChild("paypalC", {static:true}) paypalContainer!:ElementRef;
+
   public totalPriceWithoutShipping = 0;
   displayedColumns = ['title', 'unitPrice', 'quantity', 'totalPrice'];
   public fileUri!: string;
   public shippingCostPerItem = 100;
-  public cartItems: any[] = [];
+  public cartItems: any[] = []; 
+  addressForm!: FormGroup;
   async ngOnInit() {
-    
+    this.addressForm = this.formBuilder.group({
+      street: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      zip: ['', [Validators.required, Validators.pattern('[0-9]{6}')]],
+    });
     await this.initializeApp()
   }
   async initializeApp(){
@@ -54,8 +61,10 @@ export class CheckoutComponent {
   }
   
   checkOut(){
+    const shippingAddress=this.addressForm.value
+    console.log(shippingAddress)
     const amount = parseFloat(this.totalPriceWithoutShipping.toString())+(this.cartItems.length*this.shippingCostPerItem); // Example amount
-    this._backendService.makePostApiCall("user/initiatePayment",{ amount,email:this._authService.getData().email,products:this.cartItems }).subscribe((res:any)=>{
+    this._backendService.makePostApiCall("user/initiatePayment",{ amount,email:this._authService.getData().email,products:this.cartItems,shippingAddress }).subscribe((res:any)=>{
       console.log('Payment initiated successfully:', res);
       if(res.success){
         // this._router.navigateByUrl(res.data)
@@ -65,5 +74,8 @@ export class CheckoutComponent {
       console.error('Error initiating payment:', error);
       // Handle error
     })
+  }
+  onSubmit() {
+
   }
 }

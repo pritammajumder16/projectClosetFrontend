@@ -1,0 +1,20 @@
+<div class="outerDiv">
+  <mat-icon style="transform: scale(3);">reviews</mat-icon>
+  <br><br>
+  <div>
+    <span
+      *ngFor="let _ of [1, 2, 3, 4, 5]; let i = index"
+      class="star"
+      [ngClass]="{ filled: i < rating }"
+      (click)="rate(i + 1)"
+    >
+      &#9733;
+    </span>
+  </div>
+  <br>
+  <textarea style="padding: 0.5rem;" [(ngModel)]="review" placeholder="Please write a review" rows="4"></textarea>
+  <div class="buttons">
+    <button style="margin-right: 0.5rem;" mat-stroked-button (click)="submit()" [disabled]="!rating">Submit</button
+    ><button mat-stroked-button (click)="close()">Close</button>
+  </div>
+</div>
