@@ -1,45 +1,28 @@
 <mat-drawer-container autosize hasBackdrop="true">
   <mat-drawer #drawer mode="over">
     <div class="matDrawerOuterBox">
-      <div class="outerItem topBar">
-        <div class="projectTitle">
-          <mat-icon class="innerIcon">shopping_cart</mat-icon>
-          <p>Project Closet</p>
-        </div>
-        <mat-icon (click)="drawer.close()">arrow_back</mat-icon>
+      <div class="closeIcon">
+        <mat-icon (click)="drawer.close()">close</mat-icon>
       </div>
-      <div class="outerItem">
-        <a class="innerItem alignCenterFlex" href="#">
-          <mat-icon>info</mat-icon>About Us</a
-        >
-      </div>
-      <div class="outerItem">
-        <a class="innerItem alignCenterFlex" href="#">
-          <mat-icon>rss_feed</mat-icon>Blog</a
-        >
-      </div>
-      <div class="outerItem">
-        <a class="innerItem alignCenterFlex" href="#">
-          <mat-icon>phone_in_talk</mat-icon>Contact Us</a
-        >
-      </div>
-      <div class="outerItem">
-        <a class="innerItem alignCenterFlex" href="#">
-          <mat-icon>help</mat-icon>Help & Support</a
-        >
-      </div>
-      <div class="outerItem">
+
+      <div class="outerItem" *ngFor="let item of navItems.slice(1)">
         <a
           class="innerItem alignCenterFlex"
-          routerLink="/admin/home"
+          *ngIf="!item.action"
+          [href]="item.link ? item.link : null"
+          [routerLink]="item.routerLink ? item.routerLink : null"
           routerLinkActive="routerActive"
         >
-          <mat-icon>admin_panel_settings</mat-icon>Administration</a
+          <mat-icon>{{ item.icon }}</mat-icon
+          >{{ item.label }}
+        </a>
+        <button
+          class="btn innerItem alignCenterFlex"
+          *ngIf="item.action"
+          (click)="item.action === 'logout' ? logout() : null"
         >
-      </div>
-      <div class="outerItem">
-        <button class="btn innerItem alignCenterFlex" (click)="logout()">
-          <mat-icon>logout</mat-icon>Logout
+          <mat-icon>{{ item.icon }}</mat-icon
+          >{{ item.label }}
         </button>
       </div>
     </div>

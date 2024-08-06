@@ -1,19 +1,44 @@
+$blue0: #eeeeee;
+$blue-100: #508c9b;
+$blue200: #134b70;
+$blue300: #201e43;
+$gray: #ebebe4;
+$font-color: #333;
+$blue-50: #d5ffff;
 .matDrawerOuterBox {
   height: 100%;
   width: 100%;
+  z-index: 200;
   display: flex;
   flex-direction: column;
-
+  background-color: $gray;
+  .closeIcon {
+    width: 100%;
+    text-align: right;
+    padding: 20px;
+  }
   .outerItem {
     width: 100%;
     padding: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: left;
-    border-bottom: 1px solid black;
+    gap: 1rem;
     a {
       text-decoration: none;
-      color: black;
+      color: $blue300;
+      border: 0px;
+    }
+    .innerItem {
+      border: 0px;
+      color: $blue300;
+      cursor: pointer;
+      padding: 5px 20px;
+      display: flex;
+      gap: 5px;
+      &:hover {
+        color: $blue200;
+      }
     }
     .routerActive {
       background-color: #d1e2eb;
