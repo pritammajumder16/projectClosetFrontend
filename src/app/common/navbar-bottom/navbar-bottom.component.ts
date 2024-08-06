@@ -9,13 +9,13 @@ import { Subscription } from 'rxjs';
 })
 export class NavbarBottomComponent {
   public userName: string | undefined;
-  public isAuthenticated: Boolean | undefined;
+  public isAuthenticated: boolean | undefined;
   private subscription: Subscription | undefined;
   constructor(private _authService: AuthServiceService) {}
   ngOnInit() {
-    this.authenticator()
+    this.authenticator();
   }
-  public authenticator(){
+  public authenticator() {
     const isAuth = this._authService.getIsAuthenticated();
     if (isAuth) {
       this.isAuthenticated = isAuth;
@@ -28,10 +28,10 @@ export class NavbarBottomComponent {
       }
     );
   }
-  logout(){
-    this._authService.logout()
+  logout() {
+    this._authService.logout();
   }
-  ngOnDestroy(){
-    this.subscription?.unsubscribe()
+  ngOnDestroy() {
+    this.subscription?.unsubscribe();
   }
 }

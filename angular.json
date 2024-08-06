@@ -24,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/project-closet-frontend",
+            "outputPath": "dist/prit-closet-frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [

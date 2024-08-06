@@ -22,16 +22,16 @@ export class CategoryComponent {
   public currentPage = 1;
   displayedColumns = ['categoryId', 'categoryName', 'createdBy', 'action'];
   ngOnInit() {
-    this.getDatasource(this.currentPage,this.pageSize);
+    this.getDatasource(this.currentPage, this.pageSize);
   }
-  getDatasource(pageIndex:Number,pageSize:Number) {
-    const obj:any = {pageIndex,pageSize}
+  getDatasource(pageIndex: number, pageSize: number) {
+    const obj: any = { pageIndex, pageSize };
     this._backendService
-      .makeGetApiCall('admin/allCategories',obj)
+      .makeGetApiCall('admin/allCategories', obj)
       .subscribe((res: any) => {
         if (res['success']) {
           this.dataSource = res.data.categories;
-          this.length= res.data.count;
+          this.length = res.data.count;
         }
       });
   }
@@ -48,7 +48,7 @@ export class CategoryComponent {
       })
       .subscribe((res: any) => {
         if (res.success) {
-          this.getDatasource(this.currentPage,this.pageSize);
+          this.getDatasource(this.currentPage, this.pageSize);
         }
       });
   }
@@ -66,16 +66,16 @@ export class CategoryComponent {
             .makeGetApiCall(route, res)
             .subscribe((res: any) => {
               if (res.success) {
-                this.getDatasource(this.currentPage,this.pageSize);
+                this.getDatasource(this.currentPage, this.pageSize);
               }
             });
         }
       });
   }
-  page(event:any){
-    this.pageSize=event.pageSize
-    this.currentPage=event.pageIndex+1;
+  page(event: any) {
+    this.pageSize = event.pageSize;
+    this.currentPage = event.pageIndex + 1;
     console.log(event);
-    this.getDatasource(this.currentPage, event.pageSize)
+    this.getDatasource(this.currentPage, event.pageSize);
   }
 }

@@ -8,7 +8,7 @@ import { AuthServiceService } from '../../services/auth-service.service';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent implements OnInit {
-  public title: string = 'Project Closet';
+  public title: string = 'Prit Closet';
   public roleId: number | undefined;
   constructor(
     private _router: Router,

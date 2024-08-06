@@ -11,7 +11,7 @@ import { BackendServiceService } from '../../../../services/backend-service.serv
 })
 export class UserUpdateDialogComponent {
   public action: string | undefined;
-  public userName: Number | undefined;
+  public userName: number | undefined;
   public showForm: boolean = false;
   public email: String | undefined;
   public roleMatrix: any[] = [];
@@ -34,10 +34,12 @@ export class UserUpdateDialogComponent {
       .subscribe((res: any) => {
         if (res.success) {
           this.roleMatrix = res.data;
-          if(this.initialRoleId){
-            const i = this.roleMatrix.findIndex((role:any)=>role.roleId==this.initialRoleId)
-            if(i>=0){
-              this.initialRole=this.roleMatrix[i]
+          if (this.initialRoleId) {
+            const i = this.roleMatrix.findIndex(
+              (role: any) => role.roleId == this.initialRoleId
+            );
+            if (i >= 0) {
+              this.initialRole = this.roleMatrix[i];
             }
             this.showForm = true;
           }
@@ -48,14 +50,14 @@ export class UserUpdateDialogComponent {
     this.dialogRef.close();
   }
   submit(form: NgForm) {
-    console.log(form.value)
+    console.log(form.value);
     if (form.invalid) return;
-    const obj: any = {  };
+    const obj: any = {};
     if (this.userName) {
       obj.userName = this.userName;
       obj.email = this.email;
-      obj.roleId=form.value.role.roleId,
-      obj.roleName=form.value.role.roleName
+      (obj.roleId = form.value.role.roleId),
+        (obj.roleName = form.value.role.roleName);
     }
     this.dialogRef.close(obj);
   }
