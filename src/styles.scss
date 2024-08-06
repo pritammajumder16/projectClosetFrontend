@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+$blue0: #eeeeee;
+$blue100: #508c9b;
+$blue200: #134b70;
+$blue300: #201e43;
+$gray: #ebebe4;
 
 * {
   padding: 0px;
@@ -12,6 +17,7 @@
 }
 html,
 body {
+  background-color: $gray;
   height: 100%;
 }
 
@@ -20,34 +26,34 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 mat-form-field {
-    input {
-        padding-top: 5px !important;
-      }
-      
+  input {
+    padding-top: 5px !important;
+  }
 }
-.pointer{
+.pointer {
   cursor: pointer;
 }
-.flex{
+.flex {
   display: flex;
 }
-.alignCenterFlex{
+.alignCenterFlex {
   display: flex;
   align-items: center;
 }
-.bothCenterFlex{
+.bothCenterFlex {
   display: flex;
   justify-content: center;
   align-self: center;
 }
- .mdc-text-field--disabled{
-  background-color: #EBEBE4;
+.mdc-text-field--disabled {
+  background-color: #ebebe4;
 }
 
 .mat-mdc-form-field-flex {
   height: 36px !important;
 }
-.mdc-data-table__cell, .mdc-data-table__header-cell{
+.mdc-data-table__cell,
+.mdc-data-table__header-cell {
   padding: 0px !important;
   text-align: center !important;
 }
@@ -58,36 +64,41 @@ mat-form-field {
     background-color: EBEBE4 !important;
   }
 }
-mat-drawer-container{
+mat-drawer-container {
   position: static;
 }
 
-mat-drawer{
+mat-drawer {
   position: fixed !important;
   max-width: 19rem;
   left: 0;
 }
-.mat-drawer-transition .mat-drawer-backdrop{
+.mat-drawer-transition .mat-drawer-backdrop {
   position: fixed !important;
 }
-.mat-drawer-content{
+.mat-drawer-content {
   overflow: hidden !important;
 }
-.bold{
+.bold {
   font-weight: bold;
 }
 .small {
   font-size: small;
 }
-.elipssis{
+.elipssis {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.marginHalfTB{
+.marginHalfTB {
   margin: 0.5rem 0px;
 }
-.mat-mdc-tab-body-content{
+.mat-mdc-tab-body-content {
   height: max-content !important;
   overflow: hidden;
+}
+
+.btn {
+  background-color: transparent;
+  border: 0px;
 }

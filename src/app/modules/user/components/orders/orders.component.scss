@@ -6,10 +6,8 @@
     flex-direction: row;
     justify-content: space-between;
   }
-  ::ng-deep .mat-expansion-panel-body {
-    padding: 0px;
-  }
-  .orderTable{
+
+  .orderTable {
     width: max-content;
   }
   .hide {
@@ -47,20 +45,19 @@
   }
 }
 @media only screen and (max-width: 621px) {
-    .panelTitle{
-        flex-direction: column !important;
-        height: auto !important;
-    }
-    .panelHeader{
-        padding-top: 0.5rem !important;
-        padding-bottom: 0.5rem !important;
-      }
-    mat-expansion-panel-header{
-        height: auto !important;
-    }
-
+  .panelTitle {
+    flex-direction: column !important;
+    height: auto !important;
+  }
+  .panelHeader {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+  mat-expansion-panel-header {
+    height: auto !important;
+  }
 }
-.address{
+.address {
   display: flex;
   flex-direction: column;
   padding: 0.5rem;

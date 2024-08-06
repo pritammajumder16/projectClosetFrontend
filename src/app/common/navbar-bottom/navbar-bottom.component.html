@@ -1,36 +1,36 @@
 <div class="outerDiv">
   <div class="innerDiv">
-    <div class="innerDiv logoBtn">
+    <div class="innerDiv">
       <mat-icon>category</mat-icon>
       <strong>Categories</strong>
     </div>
   </div>
   <div class="innerDiv">
     <div class="innerDiv logoBtn" *ngIf="!isAuthenticated">
-        <a href="" class="alignCenterFlex" routerLink="/auth/login"><mat-icon>login</mat-icon>Sign In</a>
+      <a class="alignCenterFlex" routerLink="/auth/login">
+        <mat-icon>login</mat-icon>Sign In
+      </a>
     </div>
     <div class="innerDiv logoBtn" *ngIf="isAuthenticated">
-      <span>Hi, {{ userName }} &nbsp;</span>
+      <span>Hi, {{ userName }}&nbsp;</span>
     </div>
     <div class="innerDiv logoBtn" *ngIf="isAuthenticated">
-      <span class="alignCenterFlex pointer" (click)="logout()">
-        <mat-icon>logout</mat-icon>Logout</span
-      >
+      <button class="alignCenterFlex btn pointer" (click)="logout()">
+        <mat-icon>logout</mat-icon>Logout
+      </button>
     </div>
-
-
     <div class="innerDiv logoBtn">
-      <mat-icon> shopping_bag </mat-icon>
+      <mat-icon>shopping_bag</mat-icon>
       <a routerLink="/checkout">Cart</a>
     </div>
     <div class="innerDiv logoBtn">
-      <mat-icon> shopping_bag </mat-icon>
+      <mat-icon>shopping_bag</mat-icon>
       <a routerLink="/orders">Orders</a>
     </div>
     <div class="innerDiv logoBtn" *ngIf="isAuthenticated">
       <span class="alignCenterFlex pointer">
-        <mat-icon>settings</mat-icon>App Settings</span
-      >
+        <mat-icon>settings</mat-icon>App Settings
+      </span>
     </div>
   </div>
 </div>

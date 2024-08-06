@@ -1,26 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../../services/auth-service.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+  styleUrl: './navbar.component.scss',
 })
-export class NavbarComponent {
-  public title:string = "Project Closet"
-  public roleId:number|undefined;
-  constructor(private _router:Router,private authService:AuthServiceService){}
-  ngOnInit(){
-    if(this.authService.getIsAuthenticated()){
-      this.roleId=this.authService.getData().roleId
+export class NavbarComponent implements OnInit {
+  public title: string = 'Project Closet';
+  public roleId: number | undefined;
+  constructor(
+    private _router: Router,
+    private authService: AuthServiceService
+  ) {}
+  ngOnInit() {
+    if (this.authService.getIsAuthenticated()) {
+      this.roleId = this.authService.getData().roleId;
     }
-    
   }
-  routeToHome(){
-    this._router.navigate(["/"])
+  routeToHome() {
+    this._router.navigate(['/']);
   }
-  navigateToDetails(name:string) {
+  navigateToDetails(name: string) {
     this._router.navigate(['infoPage'], { queryParams: { name } });
   }
 }

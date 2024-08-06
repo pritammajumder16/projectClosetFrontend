@@ -4,37 +4,46 @@
       <div class="projectHamburger">
         <app-side-nav></app-side-nav>
       </div>
-      <div class="projectTitle pointer" (click)="routeToHome()">
+      <button class="projectTitle pointer btn" (click)="routeToHome()">
         <mat-icon class="innerIcon">shopping_cart</mat-icon>
         <p>{{ title }}</p>
-      </div>
-      <div class="shoppingCart">
-        <mat-icon>shopping_bag</mat-icon>
-      </div>
+      </button>
     </div>
-    <mat-form-field appearance="outline">
-      <input matInput placeholder="Search Products" />
-      <div class="rightSearches">
-        <mat-select name="ampm" placeholder="All Products" class="ampm">
-          <mat-option value="AM">AM</mat-option>
-          <mat-option value="PM">PM</mat-option>
-        </mat-select>
-        <mat-icon class="innerIcon">search</mat-icon>
-      </div>
-    </mat-form-field>
   </div>
 
   <div class="outerDiv2">
     <div class="outerItem">
-      <a class="innerItem pointer" (click)="navigateToDetails('aboutUs')">About Us</a>
-      <a class="innerItem pointer" href="#">Blog</a>
-      <a class="innerItem pointer" (click)="navigateToDetails('contactUs')">Contact Us</a>
-      <a class="innerItem pointer" *ngIf="this.roleId==1" routerLink="admin/home">Admin</a>
+      <button
+        class="innerItem pointer btn"
+        (click)="navigateToDetails('aboutUs')"
+      >
+        About Us
+      </button>
+      <button class="innerItem pointer btn" href="#">Blog</button>
+      <button
+        class="innerItem pointer btn"
+        (click)="navigateToDetails('contactUs')"
+      >
+        Contact Us
+      </button>
+      <button
+        class="innerItem pointer"
+        *ngIf="this.roleId === 1"
+        routerLink="admin/home"
+      >
+        Admin
+      </button>
     </div>
     <div class="outerItem">
-      <a href="#" class="innerItem innerIcon fa fa-instagram"></a
-      ><a href="#" class="fa innerItem innerIcon fa-facebook"></a>
-      <a href="#" class="innerItem innerIcon fa fa-twitter"></a>
+      <button href="#" class="btn innerItem innerIcon fa fa-instagram">
+        &nbsp;
+      </button>
+      <button href="#" class="btn fa innerItem innerIcon fa-facebook">
+        &nbsp;
+      </button>
+      <button href="#" class="btn innerItem innerIcon fa fa-twitter">
+        &nbsp;
+      </button>
     </div>
   </div>
 </div>

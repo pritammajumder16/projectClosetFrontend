@@ -1,36 +1,34 @@
+.matDrawerOuterBox {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 
-.matDrawerOuterBox{
-    height: 100%;
+  .outerItem {
     width: 100%;
+    padding: 0.5rem;
     display: flex;
-    flex-direction: column;
-   
-    .outerItem{
-        width: 100%;
-        padding: 0.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: left;
-        border-bottom: 1px solid black;
-        a{
-            text-decoration: none;
-            color: black;
-        } 
-        .routerActive{
-            background-color: #d1e2eb;
-        }
-        .projectTitle{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            p{
-                font-weight: bold;
-                margin: 0px;
-            }
-        }
-        
+    align-items: center;
+    justify-content: left;
+    border-bottom: 1px solid black;
+    a {
+      text-decoration: none;
+      color: black;
     }
-    .topBar{
-        justify-content: space-between;
+    .routerActive {
+      background-color: #d1e2eb;
     }
+    .projectTitle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      p {
+        font-weight: bold;
+        margin: 0px;
+      }
+    }
+  }
+  .topBar {
+    justify-content: space-between;
+  }
 }
