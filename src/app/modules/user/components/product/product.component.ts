@@ -28,6 +28,7 @@ export class ProductComponent implements OnInit {
     private _dialog: MatDialog,
     private renderer: Renderer2
   ) {}
+  public ti = 'https://wittlock.github.io/ngx-image-zoom/assets/thumb.jpg';
   productId!: number;
   public productData!: IProduct;
   public fileUri: string = '';

@@ -120,25 +120,27 @@
 
 .star.filled {
   color: #ffbb00;
-}.rightPreview.thumbnail {
-    position: relative;
-  }
-  
-  .preview-image {
-    width: 100%;
-  }
-  
-  .enlarged-image {
-    display: none;
-    position: fixed;
-    transform: translate(-50%, -50%) scale(1.2); /* Double the size and center the image */
-    z-index: 1000;
-  }
-  
-  .rightPreview.thumbnail:hover + .enlarged-image {
-    display: block;
-  }
-  .sizeBox.selected {
-    background-color: #6fa8dc;
-    font-weight: bold;
-  }
+}
+.rightPreview.thumbnail {
+  position: relative;
+}
+
+.preview-image {
+  max-width: 20rem;
+  object-fit: cover;
+}
+
+.enlarged-image {
+  display: none;
+  position: fixed;
+  transform: translate(-50%, -50%) scale(1.2); /* Double the size and center the image */
+  z-index: 1000;
+}
+
+.rightPreview.thumbnail:hover + .enlarged-image {
+  display: block;
+}
+.sizeBox.selected {
+  background-color: #6fa8dc;
+  font-weight: bold;
+}

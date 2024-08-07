@@ -10,17 +10,18 @@
           <img [src]="fileUri + productImage" alt="Cannot load images" />
         </button>
       </div>
-      <div
-        class="rightPreview thumbnail"
-        (mousemove)="updateEnlargedPosition($event)"
-        (mouseenter)="showEnlargeImage()"
-        (mouseleave)="hideEnlargeImage()"
-      >
-        <img
+
+      <div class="rightPreview thumbnail">
+        <lib-ngx-image-zoom
           class="preview-image"
-          [src]="fileUri + previewImage"
-          alt="Cannot load images"
-        />
+          [thumbImage]="fileUri + previewImage"
+          [fullImage]="fileUri + previewImage"
+          [magnification]="2"
+          [enableScrollZoom]="true"
+          [enableLens]="true"
+          [lensWidth]="200"
+          [lensHeight]="200"
+        ></lib-ngx-image-zoom>
       </div>
 
       <img

@@ -14,6 +14,7 @@ import { ReviewDialogComponent } from './components/review-dialog/review-dialog.
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpLoaderFactory } from '../../app.module';
+import { NgxImageZoomModule } from 'ngx-image-zoom';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { HttpLoaderFactory } from '../../app.module';
   ],
   imports: [
     CommonModule,
+    NgxImageZoomModule,
     materialModule,
     userRoutingModule,
     FormsModule,

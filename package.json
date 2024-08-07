@@ -26,6 +26,7 @@
     "install": "^0.13.0",
     "ng-http-loader": "^15.0.0",
     "ngx-editor": "^17.0.1",
+    "ngx-image-zoom": "^3.0.0",
     "npm": "^10.5.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
