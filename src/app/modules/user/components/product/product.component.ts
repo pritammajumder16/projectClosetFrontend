@@ -1,4 +1,10 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BackendServiceService } from '../../../../services/backend-service.service';
 import { AuthServiceService } from '../../../../services/auth-service.service';
@@ -6,40 +12,46 @@ import { MatDialog } from '@angular/material/dialog';
 import { SuccessDialogComponent } from '../../../../common/success-dialog/success-dialog.component';
 import { ReviewDialogComponent } from '../review-dialog/review-dialog.component';
 import { ErrorDialogComponent } from '../../../../common/error-dialog/error-dialog.component';
+import { IProduct } from '../../../../../models/product';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss',
 })
-export class ProductComponent {
+export class ProductComponent implements OnInit {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _backendService: BackendServiceService,
     private _authService: AuthServiceService,
     private _router: Router,
-    private _dialog: MatDialog,private renderer: Renderer2
+    private _dialog: MatDialog,
+    private renderer: Renderer2
   ) {}
   productId!: number;
-  public productData!: any;
+  public productData!: IProduct;
   public fileUri: string = '';
   public previewImage!: string;
   public quantity: number = 1;
   enlargedImage: boolean = false; // Flag to track whether the enlarged image is visible
   enlargedPositionX: number = 0; // X coordinate for positioning enlarged image
-  enlargedPositionY: number = 0; 
-  selectedSize: string=""
-  @ViewChild('enlargedImageRef', { static: true }) enlargedImageRef!: ElementRef<HTMLImageElement>;
+  enlargedPositionY: number = 0;
+  selectedSize: string = '';
+  @ViewChild('enlargedImageRef', { static: true })
+  enlargedImageRef!: ElementRef<HTMLImageElement>;
   ngOnInit() {
     this.fileUri = this._backendService.fileURI;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     this._activatedRoute.queryParams.subscribe(async (params: any) => {
       this.productId = parseInt(params.productId);
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const res: any = await this._backendService
         .makeGetApiCall('unvfd/fetchProducts', { productId: params.productId })
         .toPromise();
       if (res.success) {
         this.productData = res.data;
+        console.log('res.data', res.data);
         this.previewImage = this.productData.productImages[0];
         console.log(this.productData);
       }
@@ -64,23 +76,30 @@ export class ProductComponent {
               rating: result.rating,
               review: result.review,
             })
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             .subscribe((res: any) => {
-              if(res.success)
-              this._dialog.open(SuccessDialogComponent,{data:{message:"Review successfully added"}})
+              if (res.success)
+                this._dialog.open(SuccessDialogComponent, {
+                  data: { message: 'Review successfully added' },
+                });
             });
       });
   }
   async addToCart() {
-    if(!this.selectedSize)
-    {this._dialog.open(ErrorDialogComponent,{data:{message:"Please select a size"}})
-  return ;}
+    if (!this.selectedSize) {
+      this._dialog.open(ErrorDialogComponent, {
+        data: { message: 'Please select a size' },
+      });
+      return;
+    }
     const obj = {
       productId: this.productData.productId,
       quantity: this.quantity,
       price: this.productData.price,
-      size:this.selectedSize
+      size: this.selectedSize,
     };
     if (this._authService.getIsAuthenticated()) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const res: any = await this._backendService
         .makePostApiCall('user/addToCart', obj)
         .toPromise();
@@ -100,7 +119,7 @@ export class ProductComponent {
       this._router.navigate(['auth/login']);
     }
   }
-// Y coordinate for positioning enlarged image
+  // Y coordinate for positioning enlarged image
 
   showEnlargeImage() {
     this.enlargedImage = true;
@@ -110,9 +129,10 @@ export class ProductComponent {
     this.enlargedImage = false;
   }
 
-  
   updateEnlargedPosition(event: MouseEvent) {
-    const thumbnailRect = (event.currentTarget as HTMLElement).getBoundingClientRect();
+    const thumbnailRect = (
+      event.currentTarget as HTMLElement
+    ).getBoundingClientRect();
     this.enlargedPositionX = event.clientX - thumbnailRect.left;
     this.enlargedPositionY = event.clientY - thumbnailRect.top;
     this.updateEnlargedImagePosition();
@@ -121,8 +141,16 @@ export class ProductComponent {
   private updateEnlargedImagePosition() {
     if (this.enlargedImageRef && this.enlargedImageRef.nativeElement?.style) {
       const enlargedImage = this.enlargedImageRef.nativeElement;
-      this.renderer.setStyle(enlargedImage, 'left', `${this.enlargedPositionX}px`);
-      this.renderer.setStyle(enlargedImage, 'top', `${this.enlargedPositionY}px`);
+      this.renderer.setStyle(
+        enlargedImage,
+        'left',
+        `${this.enlargedPositionX}px`
+      );
+      this.renderer.setStyle(
+        enlargedImage,
+        'top',
+        `${this.enlargedPositionY}px`
+      );
     }
   }
   selectSize(size: string) {

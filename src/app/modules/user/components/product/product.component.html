@@ -2,13 +2,13 @@
   <div class="topDetails">
     <div class="leftImages">
       <div class="smallImageContainer">
-        <div
-          class="previewImages"
+        <button
+          class="btn previewImages"
           *ngFor="let productImage of productData.productImages"
           (click)="changePreview(productImage)"
         >
           <img [src]="fileUri + productImage" alt="Cannot load images" />
-        </div>
+        </button>
       </div>
       <div
         class="rightPreview thumbnail"
@@ -35,13 +35,13 @@
     </div>
     <!-- Secondary -->
     <div class="secondaryImageContainer">
-      <div
-        class="previewImages"
+      <button
+        class="btn previewImages"
         *ngFor="let productImage of productData.productImages"
         (click)="changePreview(productImage)"
       >
         <img [src]="fileUri + productImage" alt="Cannot load images" />
-      </div>
+      </button>
     </div>
 
     <div class="rightDetails">
@@ -67,22 +67,22 @@
       }}</span>
       <div class="sizeContainer marginHalfTB">
         <span style="width: 5rem">Size: &nbsp;</span>
-        <div
-          class="sizeBox box pointer"
+        <button
+          class="btn sizeBox box pointer"
           *ngFor="let size of productData.size"
           [class.selected]="selectedSize === size"
           (click)="selectSize(size)"
         >
           {{ size }}
-        </div>
+        </button>
       </div>
       <div class="sizeContainer marginHalfTB">
         <span style="width: 5rem">Quantity: &nbsp;</span>
         <div class="priceBox box">
           <span
-            ><span class="pointer" (click)="quantityChange(-1)">-</span
+            ><button class="btn pointer" (click)="quantityChange(-1)">-</button
             >{{ quantity }}</span
-          ><span class="pointer" (click)="quantityChange(1)">+</span>
+          ><button class="btn pointer" (click)="quantityChange(1)">+</button>
         </div>
       </div>
 

@@ -35,6 +35,7 @@ export class CheckoutComponent {
     this.fileUri = this._backendService.fileURI;
     const email = this._authService.getData().email;
     if (email) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const res: any = await this._backendService
         .makeGetApiCall('user/getCart', { email })
         .toPromise();
@@ -46,7 +47,6 @@ export class CheckoutComponent {
     }
   }
 
-  deleteE(element: any) {}
   quantityChange(change: number, element: any) {
     if (element.quantity + change >= 1)
       element.quantity = element.quantity + change;
@@ -75,6 +75,7 @@ export class CheckoutComponent {
         shippingAddress,
       })
       .subscribe(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (res: any) => {
           console.log('Payment initiated successfully:', res);
           if (res.success) {
@@ -82,6 +83,7 @@ export class CheckoutComponent {
             window.location.href = res.data;
           }
         },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (error: any) => {
           console.error('Error initiating payment:', error);
           // Handle error

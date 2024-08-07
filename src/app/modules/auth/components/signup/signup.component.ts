@@ -1,9 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BackendServiceService } from '../../../../services/backend-service.service';
 import { passwordMatchValidation } from '../../../../customValidators/passwordMatchValidation';
 import { Router } from '@angular/router';
@@ -16,7 +12,7 @@ import { ErrorDialogComponent } from '../../../../common/error-dialog/error-dial
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss',
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent {
   public userForm: FormGroup;
   constructor(
     private _backendService: BackendServiceService,
@@ -43,25 +39,27 @@ export class SignupComponent implements OnInit {
       { validators: passwordMatchValidation }
     );
   }
-  onSubmit(event: SubmitEvent) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  onSubmit(_event: SubmitEvent) {
     if (this.userForm.invalid) return;
     const data = { ...this.userForm.value };
     data.dateOfBirth = data.dateOfBirth.getTime();
     this._backendService
       .makePostApiCall('auth/signup', data)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .subscribe((res: any) => {
         if (res['success'] == true) {
           this.dialog.open(SuccessDialogComponent, {
             data: { message: 'Account Created Successfully' },
           });
           this._router.navigate(['/auth/login']);
-        } else if (res.data.hasOwnProperty('emailExists')) {
+        } else if (
+          Object.prototype.hasOwnProperty.call(res.data, 'emailExists')
+        ) {
           this.dialog.open(ErrorDialogComponent, {
             data: { message: 'Email already Exists' },
           });
         }
       });
   }
-
-  ngOnInit(): void {}
 }

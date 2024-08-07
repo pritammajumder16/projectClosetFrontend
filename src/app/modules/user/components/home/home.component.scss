@@ -9,32 +9,46 @@
   }
   .cardCover {
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
+    padding: 1rem 1rem;
+    .topSpan {
+      font-size: x-large;
+      padding: 1rem;
+    }
     .cardsInnerDiv {
       display: flex;
       justify-content: space-evenly;
       max-height: max-content;
       flex-wrap: wrap;
+      gap: 1rem;
       .cards:hover {
-        box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 1),
-          0 1px 1px 0 rgba(0, 0, 0, 1), 0 1px 3px 0 rgba(0, 0, 0, 1);
+        box-shadow: 0 2px 1px -1px rgb(102, 101, 101),
+          0 1px 1px 0 rgb(90, 83, 83), 0 1px 3px 0 rgb(113, 108, 108);
       }
       .cards {
         cursor: pointer;
-        margin: 0.5rem;
         padding: 0.5rem;
+        border: 0px;
+        transition: all 0.3s;
+        border-radius: 0.5rem;
         width: 15rem;
+        background-color: #ebebeb;
         height: max-content;
         .imgDiv {
           height: 20rem;
           max-width: 100%;
           display: flex;
+          border-radius: 0.5rem;
           align-items: center;
+
           justify-content: center;
           img {
             height: 100%;
+            border-radius: 0.5rem;
             width: max-content;
             overflow: hidden;
+            object-fit: cover;
           }
         }
       }

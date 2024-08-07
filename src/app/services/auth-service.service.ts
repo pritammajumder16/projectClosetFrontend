@@ -17,16 +17,16 @@ export class AuthServiceService {
   private token: string | undefined;
   private userName: string | undefined;
   private email: string | undefined;
-  private timer: any;
+  private timer!: any;
   private isAuthenticated: boolean = false;
   public isAuthenticatedSubject: Subject<boolean> = new Subject<boolean>();
   private roleId: number | undefined;
   private roleName: number | undefined;
   setUserData(data: { [key: string]: any }) {
-    sessionStorage.setItem('token', data['authToken'] || '');
-    sessionStorage.setItem('userName', data['userName'] || '');
-    sessionStorage.setItem('email', data['email'] || '');
-    sessionStorage.setItem(
+    localStorage.setItem('token', data['authToken'] || '');
+    localStorage.setItem('userName', data['userName'] || '');
+    localStorage.setItem('email', data['email'] || '');
+    localStorage.setItem(
       'timerExpiry',
       (new Date().getTime() + 7.2e7).toString() //20 hours validity initially
     );
@@ -36,11 +36,11 @@ export class AuthServiceService {
     return this.isAuthenticated;
   }
   timerAuthenticate() {
-    this.token = sessionStorage.getItem('token') || undefined;
-    this.userName = sessionStorage.getItem('userName') || undefined;
-    this.email = sessionStorage.getItem('email') || undefined;
-    console.log(this.token,this.userName,this.email)
-    const timerExpiry = parseInt(sessionStorage.getItem('timerExpiry') || '0');
+    this.token = localStorage.getItem('token') || undefined;
+    this.userName = localStorage.getItem('userName') || undefined;
+    this.email = localStorage.getItem('email') || undefined;
+    console.log(this.token, this.userName, this.email);
+    const timerExpiry = parseInt(localStorage.getItem('timerExpiry') || '0');
     const timerValidity = timerExpiry - new Date().getTime();
     if (timerValidity > 0) {
       this.timer = setTimeout(() => {
@@ -50,16 +50,18 @@ export class AuthServiceService {
       this.silentLoginReAquireTokens();
     }
     if (this.email) {
-      this._backendService.makeGetApiCall('auth/rolematrix', {
-        email: this.email,
-      }).subscribe((res:any)=>{
-        if(res.success==true){
-          this.roleId=res.data.roleId;
-          this.roleName=res.data.roleName;
-          this.isAuthenticated = true;
-          this.isAuthenticatedSubject.next(this.isAuthenticated);
-        }
-      });
+      this._backendService
+        .makeGetApiCall('auth/rolematrix', {
+          email: this.email,
+        })
+        .subscribe((res: any) => {
+          if (res.success == true) {
+            this.roleId = res.data.roleId;
+            this.roleName = res.data.roleName;
+            this.isAuthenticated = true;
+            this.isAuthenticatedSubject.next(this.isAuthenticated);
+          }
+        });
     }
   }
   silentLoginReAquireTokens() {
@@ -79,9 +81,9 @@ export class AuthServiceService {
     }
   }
   logout() {
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('userName');
-    sessionStorage.removeItem('email');
+    localStorage.removeItem('token');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('email');
     this.token = '';
     this.email = '';
     this.userName = '';
@@ -96,6 +98,12 @@ export class AuthServiceService {
     this._router.navigate(['auth/login']);
   }
   getData() {
-    return { token: this.token, userName: this.userName, email: this.email, roleId:this.roleId,roleName:this.roleName };
+    return {
+      token: this.token,
+      userName: this.userName,
+      email: this.email,
+      roleId: this.roleId,
+      roleName: this.roleName,
+    };
   }
 }

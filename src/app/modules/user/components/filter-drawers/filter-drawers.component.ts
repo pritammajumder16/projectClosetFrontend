@@ -6,6 +6,8 @@ import {
   ViewChild,
 } from '@angular/core';
 import { SideFilterComponent } from '../side-filter/side-filter.component';
+import { ICategory } from '../../../../../models/category';
+import { IFilters } from '../../../../../models/filters';
 
 @Component({
   selector: 'app-filter-drawers',
@@ -13,13 +15,13 @@ import { SideFilterComponent } from '../side-filter/side-filter.component';
   styleUrl: './filter-drawers.component.scss',
 })
 export class FilterDrawersComponent {
-  @Input() categories: any;
+  @Input() categories!: ICategory[];
 
-  @Input() allData: any;
-  @Output() filterChangeTrigger: EventEmitter<any> = new EventEmitter();
+  @Input() allData!: { [key: string]: string };
+  @Output() filterChangeTrigger: EventEmitter<IFilters> = new EventEmitter();
   @ViewChild(SideFilterComponent) sideChild!: SideFilterComponent;
-  @Input() productCount: any;
-  trigger(event: any) {
+  @Input() productCount!: number;
+  trigger(event: IFilters) {
     this.filterChangeTrigger.emit(event);
   }
   changeCount(count: number) {
@@ -27,7 +29,7 @@ export class FilterDrawersComponent {
     this.productCount = count;
     this.sideChild.changeCount(count);
   }
-  getAllData(allData: any) {
+  getAllData(allData: { [key: string]: string }) {
     this.sideChild.getAllData(allData);
   }
   constructor() {}

@@ -25,7 +25,7 @@ export class SideFilterComponent implements OnInit {
   public value2 = this.max;
   @Input() categories: ICategory[] | undefined;
 
-  @Input() allData: any = [];
+  @Input() allData: { [key: string]: string } = {};
 
   @Input() fromFilterBtn: boolean = false;
   @Output() filterChangeTrigger: EventEmitter<IFilters> = new EventEmitter();
@@ -45,26 +45,26 @@ export class SideFilterComponent implements OnInit {
     });
     this.getAllData(this.allData);
   }
-  getAllData(allData: any) {
-    if (allData?.priceFilterS1) {
-      this.value1 = allData.priceFilterS1;
+  getAllData(allData: { [key: string]: string }) {
+    if (allData?.['priceFilterS1']) {
+      this.value1 = Number(allData['priceFilterS1']);
     }
     console.log(this.value1, allData);
 
-    if (allData?.priceFilterS2) {
-      this.value2 = allData.priceFilterS2;
+    if (allData?.['priceFilterS2']) {
+      this.value2 = Number(allData['priceFilterS2']);
     }
 
-    if (allData?.categoryFilter) {
-      this.selectedCategories = allData.categoryFilter;
+    if (allData?.['categoryFilter']) {
+      this.selectedCategories = JSON.parse(allData['categoryFilter']);
     }
 
-    if (allData?.sizeFilter) {
-      this.selectedSizes = allData.sizeFilter;
+    if (allData?.['sizeFilter']) {
+      this.selectedSizes = JSON.parse(allData['sizeFilter']);
     }
 
-    if (allData?.searchText) {
-      this.searchText = allData.searchText;
+    if (allData?.['searchText']) {
+      this.searchText = allData['searchText'];
     }
     console.log('allDataa', this.allData);
   }

@@ -1,7 +1,7 @@
 <div class="outerDiv">
   <div class="cardCover">
     <div class="cardtopHeader">
-      <span class="bold">{{ "recommended" | translate }}</span>
+      <span class="bold topSpan">{{ "recommended" | translate }}</span>
       <app-filter-drawers
         [allData]="allData"
         [productCount]="length"
@@ -10,7 +10,6 @@
         [categories]="categoryList"
       ></app-filter-drawers>
     </div>
-    <mat-divider style="margin-left: 1rem"></mat-divider>
     <div class="cardsInnerDiv">
       <mat-card
         class="cards"
@@ -36,7 +35,7 @@
           <span
             *ngFor="let _ of [1, 2, 3, 4, 5]; let i = index"
             class="star"
-            [ngClass]="{ filled: i < product.rating }"
+            [ngClass]="{ filled: i < (product?.rating || 0) }"
           >
             &#9733;
           </span>
