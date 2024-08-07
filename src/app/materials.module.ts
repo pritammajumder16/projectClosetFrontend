@@ -23,10 +23,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { NgxEditorModule } from 'ngx-editor';
 import { FormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
-import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  imports: [CommonModule,],
+  imports: [CommonModule],
   exports: [
     MatIconModule,
     MatDialogModule,
@@ -53,6 +52,6 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     MatStepperModule,
   ],
-  providers:[]
+  providers: [],
 })
 export class materialModule {}

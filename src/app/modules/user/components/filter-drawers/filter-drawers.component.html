@@ -1,9 +1,16 @@
-<mat-drawer-container autosize hasBackdrop="true">
-    <mat-drawer #drawer mode="over">
-        <div class="arrowBack">
-            <mat-icon (click)="drawer.close()">arrow_back</mat-icon> </div>
-      <app-side-filter [allData]="allData" [productCount]="productCount"  (filterChangeTrigger)="trigger($event)" [fromFilterBtn]="true" [categories]="categories"></app-side-filter>
-    </mat-drawer>
-    <button mat-stroked-button  (click)="drawer.toggle()">Filters</button>
-    <!-- <mat-icon>menu</mat-icon> -->
-  </mat-drawer-container>
+<mat-drawer-container autosize hasBackdrop="true" class="sideDrawerFilter">
+  <mat-drawer #drawer mode="over">
+    <div class="arrowBack">
+      <mat-icon class="pointer" (click)="drawer.close()">arrow_back</mat-icon>
+    </div>
+    <app-side-filter
+      [allData]="allData"
+      [productCount]="productCount"
+      (filterChangeTrigger)="trigger($event)"
+      [fromFilterBtn]="true"
+      [categories]="categories"
+    ></app-side-filter>
+  </mat-drawer>
+  <button mat-stroked-button (click)="drawer.toggle()">Filters</button>
+  <!-- <mat-icon>menu</mat-icon> -->
+</mat-drawer-container>

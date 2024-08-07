@@ -1,5 +1,31 @@
+$blue0: #eeeeee;
+$blue-100: #508c9b;
+$blue200: #134b70;
+$blue300: #201e43;
+$gray: #ebebe4;
+$font-color: #333;
+$blue-50: #d5ffff;
 .outerFilterDiv {
+  color: $gray;
+  height: 100%;
+  background-color: $blue200;
+  padding: 1rem 2rem;
+
+  .searchField {
+    position: relative;
+  }
+  .searchIcon {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    transform: translateY(25%);
+  }
   .divider {
+    background-color: $gray !important;
+  }
+
+  .divider {
+    color: $gray;
     margin: 0.5rem 0px;
   }
   .filterDiv {

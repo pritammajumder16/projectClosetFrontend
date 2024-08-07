@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { AuthServiceService } from '../../../../services/auth-service.service';
 import { BackendServiceService } from '../../../../services/backend-service.service';
 import { FilterDrawersComponent } from '../filter-drawers/filter-drawers.component';
 import { SideFilterComponent } from '../side-filter/side-filter.component';
 import { Router } from '@angular/router';
+import { IFilters } from '../../../../../models/filters';
+import { ICategory } from '../../../../../models/category';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,7 @@ export class HomeComponent {
   public pageIndex = 1;
   public pageSize = 10;
   public productList: any[] = [];
-  public categoryList: any[] = [];
+  public categoryList: ICategory[] = [];
   public fileUri: string = '';
   public allData: any = {};
   public showSideFilter: boolean = false;
@@ -31,26 +32,28 @@ export class HomeComponent {
     this.showSideFilter = true;
     await this.getProductList();
   }
-  async getProductList(filter?: any) {
-    const obj: any = {};
+  async getProductList(filter?: IFilters) {
+    const obj = {
+      priceFilterS2: '',
+      priceFilterS1: '',
+      sizeFilter: '',
+      categoryFilter: '',
+      searchText: '',
+      pageIndex: String(this.pageIndex),
+      pageSize: String(this.pageSize),
+    };
     if (filter) {
-      obj.priceFilterS2 = filter.priceFilterS2;
-      obj.priceFilterS1 = filter.priceFilterS1;
-      obj.sizeFilter = filter.sizeFilter;
-      obj.categoryFilter = filter.categoryFilter;
+      obj.priceFilterS2 = String(filter.priceFilterS2);
+      obj.priceFilterS1 = String(filter.priceFilterS1);
+      obj.sizeFilter = JSON.stringify(filter.sizeFilter);
+      obj.categoryFilter = JSON.stringify(filter.categoryFilter);
       obj.searchText = filter.searchText;
     }
 
     this.allData = { ...obj };
+    console.log(this.allData);
     this.sideChild?.getAllData(this.allData);
     this.drawerChild?.getAllData(this.allData);
-    if (filter) {
-      obj.categoryFilter = JSON.stringify(obj.categoryFilter);
-
-      obj.sizeFilter = JSON.stringify(obj.sizeFilter);
-    }
-    obj.pageIndex = this.pageIndex;
-    obj.pageSize = this.pageSize;
     const res: any = await this._backendService
       .makeGetApiCall('unvfd/fetchProducts', obj)
       .toPromise();
@@ -70,8 +73,8 @@ export class HomeComponent {
       this.categoryList = res.data;
     }
   }
-  getPrice(price: any) {
-    return parseFloat(parseFloat(price).toFixed(2));
+  getPrice(price: number | string) {
+    return parseFloat(parseFloat(String(price)).toFixed(2));
   }
   filterChangeTrigger(event: any) {
     console.log(event);

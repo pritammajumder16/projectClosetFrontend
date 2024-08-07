@@ -1,5 +1,19 @@
-.arrowBack{
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
+$blue0: #eeeeee;
+$blue-100: #508c9b;
+$blue200: #134b70;
+$blue300: #201e43;
+$gray: #ebebe4;
+$font-color: #333;
+$blue-50: #d5ffff;
+.arrowBack {
+  width: 100%;
+  display: flex;
+  color: $gray;
+  justify-content: flex-end;
+  background-color: $blue200;
+  padding: 1rem;
+}
+.sideDrawerFilter mat-drawer {
+  padding-bottom: 1rem;
+  background-color: $blue200 !important;
 }

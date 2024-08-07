@@ -4,7 +4,7 @@ import { BackendServiceService } from '../../../../services/backend-service.serv
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../../../../common/error-dialog/error-dialog.component';
-import { constants } from '../../../../constants/constants';
+import { constants } from '../../../../../constants/constants';
 import { Editor } from 'ngx-editor';
 
 @Component({
@@ -23,10 +23,15 @@ export class ProductCreateComponent {
   public productId: number | undefined;
   public productName: string | undefined;
   public allFilesBase64: any[] = [];
-  public allFiles: any[] = [];  
+  public allFiles: any[] = [];
   public sizeList = constants.sizes;
   public categoryList: any[] = [];
-  public imageMimeTypes = ['image/jpeg', 'image/jpg', 'image/png', "image/webp"];
+  public imageMimeTypes = [
+    'image/jpeg',
+    'image/jpg',
+    'image/png',
+    'image/webp',
+  ];
   public productForm: FormGroup = new FormGroup({
     productId: new FormControl({ value: '', disabled: true }),
     productName: new FormControl('', Validators.required),
@@ -40,11 +45,9 @@ export class ProductCreateComponent {
   editor!: Editor;
   html = '';
 
-
-
   async ngOnInit() {
     this.editor = new Editor();
-    const res:any = await this.getAllCategories()   
+    const res: any = await this.getAllCategories();
     if (res.success) {
       this.categoryList = res.data;
     }
@@ -60,7 +63,8 @@ export class ProductCreateComponent {
   }
   async getAllCategories() {
     return this._backendService
-      .makeGetApiCall('unvfd/categoryList').toPromise();
+      .makeGetApiCall('unvfd/categoryList')
+      .toPromise();
   }
   getProduct() {
     if (!this.productId) return;
@@ -77,7 +81,7 @@ export class ProductCreateComponent {
             price: res.data.price,
             description: res.data.description,
             productImages: res.data.productImages,
-            categoryId: res.data.categoryId
+            categoryId: res.data.categoryId,
           });
           if (res?.data?.productImages && res.data.productImages.length > 0) {
             res.data.productImages.forEach((fileUrl: string) => {
@@ -95,7 +99,7 @@ export class ProductCreateComponent {
       const i = this.categoryList.findIndex(
         (category: any) => category.categoryId == finalObj.categoryId
       );
-      console.log(i)
+      console.log(i);
       if (i >= 0) {
         this.productForm.patchValue({
           categoryName: this.categoryList[i].categoryName,
@@ -103,7 +107,7 @@ export class ProductCreateComponent {
         finalObj.categoryName = this.categoryList[i].categoryName;
       }
     }
-    console.log(finalObj)
+    console.log(finalObj);
     if (this.productForm.invalid) return;
     console.log({ ...finalObj });
     console.log(finalObj.productImages);
@@ -121,7 +125,7 @@ export class ProductCreateComponent {
     this._backendService
       .sendFormDataApiCall('admin/productUpload', formData)
       .subscribe((res: any) => {
-        this._router.navigate(["admin/productList"])
+        this._router.navigate(['admin/productList']);
       });
   }
   cancel() {

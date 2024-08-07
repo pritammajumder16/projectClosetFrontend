@@ -1,12 +1,19 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { constants } from '../../../../constants/constants';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { constants } from '../../../../../constants/constants';
+import { ICategory } from '../../../../../models/category';
+import {
+  ICategoryFilter,
+  IFilters,
+  ISizeFilter,
+} from '../../../../../models/filters';
 
 @Component({
   selector: 'app-side-filter',
   templateUrl: './side-filter.component.html',
   styleUrl: './side-filter.component.scss',
 })
-export class SideFilterComponent {
+export class SideFilterComponent implements OnInit {
   disabled = false;
   max = 10000;
   min = 0;
@@ -16,15 +23,16 @@ export class SideFilterComponent {
   public searchText: string = '';
   public value1 = 0;
   public value2 = this.max;
-  @Input() categories: any;
+  @Input() categories: ICategory[] | undefined;
 
   @Input() allData: any = [];
+
   @Input() fromFilterBtn: boolean = false;
-  @Output() filterChangeTrigger: EventEmitter<any> = new EventEmitter();
-  @Input() productCount: any = 0;
+  @Output() filterChangeTrigger: EventEmitter<IFilters> = new EventEmitter();
+  @Input() productCount: number = 0;
   public sizeArray: string[] = constants.sizes;
-  public selectedCategories: any = {};
-  public selectedSizes: any = {};
+  public selectedCategories: ICategoryFilter = {};
+  public selectedSizes: ISizeFilter = {};
   public showCount: number = 0;
   public randArr = [];
   ngOnInit() {
@@ -32,13 +40,12 @@ export class SideFilterComponent {
     this.sizeArray.forEach((size: string) => {
       this.selectedSizes[size] = false;
     });
-    this.categories.forEach((category: any) => {
+    this.categories?.forEach((category: ICategory) => {
       this.selectedCategories[category.categoryId] = false;
     });
     this.getAllData(this.allData);
   }
   getAllData(allData: any) {
-    console.log('allDataa');
     if (allData?.priceFilterS1) {
       this.value1 = allData.priceFilterS1;
     }
@@ -59,8 +66,28 @@ export class SideFilterComponent {
     if (allData?.searchText) {
       this.searchText = allData.searchText;
     }
+    console.log('allDataa', this.allData);
   }
-  filterChange(data: any, type: string) {
+  searchClick(
+    event: { preventDefault: () => void; stopPropagation: () => void },
+    data: string,
+    type: string
+  ) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.filterChange(data, type);
+  }
+  filterChange(
+    _data: string | number | ISizeFilter | ICategoryFilter,
+    _type: string
+  ) {
+    console.log({
+      priceFilterS2: this.value2,
+      priceFilterS1: this.value1,
+      categoryFilter: this.selectedCategories,
+      sizeFilter: this.selectedSizes,
+      searchText: this.searchText,
+    });
     this.filterChangeTrigger.emit({
       priceFilterS2: this.value2,
       priceFilterS1: this.value1,

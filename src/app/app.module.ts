@@ -8,7 +8,11 @@ import { FooterComponent } from './common/footer/footer.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { materialModule } from './materials.module';
 import { NavbarBottomComponent } from './common/navbar-bottom/navbar-bottom.component';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule,
+} from '@angular/common/http';
 import { SideNavComponent } from './common/side-nav/side-nav.component';
 import { ErrorDialogComponent } from './common/error-dialog/error-dialog.component';
 import { NgHttpLoaderModule } from 'ng-http-loader';
@@ -35,11 +39,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     materialModule,
     HttpClientModule,
     NgHttpLoaderModule.forRoot(),
-    TranslateModule.forRoot({loader: {
-      provide: TranslateLoader,
-      useFactory: HttpLoaderFactory,
-      deps: [HttpClient]
-  },defaultLanguage:"en"})
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      defaultLanguage: 'en',
+    }),
   ],
   providers: [
     provideAnimationsAsync(),

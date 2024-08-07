@@ -1,23 +1,27 @@
-import { Component, EventEmitter, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-review-dialog',
   templateUrl: './review-dialog.component.html',
-  styleUrl: './review-dialog.component.scss'
+  styleUrl: './review-dialog.component.scss',
 })
 export class ReviewDialogComponent {
   public rating!: number;
-  review:string="";
-  constructor(private _dialogRef:MatDialogRef<ReviewDialogComponent>, @Inject(MAT_DIALOG_DATA) public data:any) { }
+  review: string = '';
+  constructor(
+    private _dialogRef: MatDialogRef<ReviewDialogComponent>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
 
   rate(index: number) {
     this.rating = index;
   }
-  submit(){
-    this._dialogRef.close({rating:this.rating,review:this.review})
+  submit() {
+    this._dialogRef.close({ rating: this.rating, review: this.review });
   }
-  close(){
-    this._dialogRef.close()
+  close() {
+    this._dialogRef.close();
   }
 }

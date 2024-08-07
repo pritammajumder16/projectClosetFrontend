@@ -18,12 +18,10 @@ $blue-50: #d5ffff;
   .innerDiv {
     display: flex;
     align-items: center;
-    gap: 1rem;
 
     .logoBtn {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
       padding: 0 0.5rem;
       cursor: pointer;
       transition: color 0.3s, background-color 0.3s;
@@ -40,7 +38,7 @@ $blue-50: #d5ffff;
         text-decoration: none;
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 4px;
       }
 
       button {
