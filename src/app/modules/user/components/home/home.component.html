@@ -44,7 +44,17 @@
         <!-- <div class="flex"><mat-icon>add_shopping_cart</mat-icon> <span>Add to cart</span></div> -->
       </mat-card>
     </div>
+    <mat-paginator
+      class="homePaginator"
+      [length]="length"
+      [pageSize]="pageSize"
+      (page)="onPageChange($event)"
+      [pageSizeOptions]="[12, 24, 48, 100]"
+      aria-label="Select page"
+    >
+    </mat-paginator>
   </div>
+
   <div class="sideFilter">
     <app-side-filter
       *ngIf="showSideFilter"

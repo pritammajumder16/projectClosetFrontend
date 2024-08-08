@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { IFilters } from '../../../../../models/filters';
 import { ICategory } from '../../../../../models/category';
 import { IProduct } from '../../../../../models/product';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,7 @@ import { IProduct } from '../../../../../models/product';
 export class HomeComponent implements OnInit {
   public length: number = 0;
   public pageIndex = 1;
-  public pageSize = 10;
+  public pageSize = 12;
   public productList: IProduct[] = [];
   public categoryList: ICategory[] = [];
   public fileUri: string = '';
@@ -91,5 +92,11 @@ export class HomeComponent implements OnInit {
     this._router.navigate(['/product'], {
       queryParams: { productId: product.productId },
     });
+  }
+  onPageChange(event: PageEvent) {
+    console.log(event);
+    this.pageSize = event.pageSize;
+    this.pageIndex = event.pageIndex + 1;
+    this.getProductList();
   }
 }

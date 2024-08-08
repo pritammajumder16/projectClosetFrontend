@@ -174,3 +174,6 @@ input[type="number"] {
   height: 100% !important;
   width: 100% !important;
 }
+.homePaginator .mat-mdc-paginator-outer-container {
+  background-color: $gray !important;
+}

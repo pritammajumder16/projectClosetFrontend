@@ -1,14 +1,18 @@
-<app-navbar></app-navbar>
-<app-navbar-bottom></app-navbar-bottom>
-<router-outlet></router-outlet>
+<div style="min-height: 100vh">
+  <app-navbar></app-navbar>
+  <app-navbar-bottom></app-navbar-bottom>
+  <router-outlet></router-outlet>
+</div>
+
 <app-footer></app-footer>
-<ng-http-loader 
-    [backdrop]="true"
-    [backgroundColor]="'#6fa8dc'"
-    [debounceDelay]="100"
-    [extraDuration]="300"
-    [minDuration]="300"
-    [opacity]="'.6'"
-    [backdropBackgroundColor]="'#777777'"
-    [spinner]="spinkit.skWave">
+<ng-http-loader
+  [backdrop]="true"
+  [backgroundColor]="'#6fa8dc'"
+  [debounceDelay]="100"
+  [extraDuration]="300"
+  [minDuration]="300"
+  [opacity]="'.6'"
+  [backdropBackgroundColor]="'#777777'"
+  [spinner]="spinkit.skWave"
+>
 </ng-http-loader>

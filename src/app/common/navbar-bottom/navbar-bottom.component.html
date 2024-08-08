@@ -1,5 +1,5 @@
 <div class="outerDiv">
-  <div class="innerDiv">
+  <div class="innerDiv projectTitle">
     <div class="innerDiv">
       <mat-icon>category</mat-icon>
       <strong>Categories</strong>
@@ -11,7 +11,7 @@
         <mat-icon>login</mat-icon>Sign In
       </a>
     </div>
-    <div class="innerDiv logoBtn" *ngIf="isAuthenticated">
+    <div class="innerDiv userNameInner logoBtn" *ngIf="isAuthenticated">
       <span>Hi, {{ userName }}&nbsp;</span>
     </div>
     <div class="innerDiv logoBtn" *ngIf="isAuthenticated">

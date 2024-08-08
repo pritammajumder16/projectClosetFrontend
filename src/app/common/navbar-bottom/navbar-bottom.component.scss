@@ -77,10 +77,16 @@ $blue-50: #d5ffff;
   }
 }
 
-@media only screen and (max-width: 621px) {
+@media only screen and (max-width: 800px) {
   .outerDiv {
     flex-direction: column;
     align-items: flex-start;
+    .projectTitle {
+      display: none;
+    }
+  }
+  .userNameInner {
+    display: none !important;
   }
 
   .innerDiv {
