@@ -168,3 +168,9 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+.rightPreview .ngxImageZoomContainer,
+.rightPreview .ngxImageZoomThumbnail {
+  height: 100% !important;
+  width: 100% !important;
+}

@@ -15,12 +15,12 @@
         <lib-ngx-image-zoom
           class="preview-image"
           [thumbImage]="fileUri + previewImage"
-          [fullImage]="fileUri + previewImage"
-          [magnification]="2"
+          [magnification]="1"
           [enableScrollZoom]="true"
           [enableLens]="true"
-          [lensWidth]="200"
-          [lensHeight]="200"
+          [lensWidth]="250"
+          [circularLens]="false"
+          [lensHeight]="250"
         ></lib-ngx-image-zoom>
       </div>
 
@@ -46,7 +46,7 @@
     </div>
 
     <div class="rightDetails">
-      <span class="bold" style="font-size: large">{{
+      <span class="bold" style="font-size: x-large">{{
         productData.productName
       }}</span>
 
@@ -63,11 +63,11 @@
           (Reviewed by {{ productData.reviews.length }} people)</span
         >
       </div>
-      <span class="marginHalfTB">{{
+      <span class="marginHalfTB priceLabel">{{
         productData.price | currency : "INR"
       }}</span>
       <div class="sizeContainer marginHalfTB">
-        <span style="width: 5rem">Size: &nbsp;</span>
+        <span style="width: 5rem" class="leftSpan">Size: &nbsp;</span>
         <button
           class="btn sizeBox box pointer"
           *ngFor="let size of productData.size"
@@ -78,17 +78,18 @@
         </button>
       </div>
       <div class="sizeContainer marginHalfTB">
-        <span style="width: 5rem">Quantity: &nbsp;</span>
+        <span style="width: 5rem" class="leftSpan">Quantity: &nbsp;</span>
         <div class="priceBox box">
-          <span
-            ><button class="btn pointer" (click)="quantityChange(-1)">-</button
-            >{{ quantity }}</span
+          <button class="btn pointer" (click)="quantityChange(-1)">-</button>
+          <span>{{ quantity }}</span
           ><button class="btn pointer" (click)="quantityChange(1)">+</button>
         </div>
       </div>
 
       <div class="addressBox marginHalfTB">
-        <span style="width: 5rem">Shipping Country: &nbsp;</span>
+        <span style="width: 5rem" class="leftSpan"
+          >Shipping Country: &nbsp;</span
+        >
         <span>India</span>
       </div>
       <div class="marginHalfTB">
@@ -119,8 +120,11 @@
   <div class="bottomDetails">
     <div class="descriptionContainer">
       <mat-tab-group>
-        <mat-tab label="Description">
-          <div [innerHTML]="productData.description"></div>
+        <mat-tab class="description" label="Description">
+          <div
+            class="innerDescription"
+            [innerHTML]="productData.description"
+          ></div>
         </mat-tab>
         <mat-tab label="Reviews">
           <div class="reviewOuter">
@@ -128,10 +132,20 @@
               class="innerReview"
               *ngFor="let review of productData.reviews"
             >
-              <span class="bold">Rating: {{ review.rating }}</span>
-              <span>Reviewed By: {{ review.createdBy }}</span>
-              <span>Reviewed On: {{ review.reviewOn | date }}</span>
-              <span>Review: {{ review.text }}</span>
+              <div class="marginHalfTB">
+                <span
+                  *ngFor="let _ of [1, 2, 3, 4, 5]; let i = index"
+                  class="star"
+                  [ngClass]="{ filled: i < review.rating }"
+                >
+                  &#9733;
+                </span>
+              </div>
+              <span> {{ review.createdBy }} </span>
+              <span style="font-size: small"
+                >({{ review.reviewOn | date }})</span
+              >
+              <span> {{ review.text }}</span>
             </mat-card>
           </div>
         </mat-tab>
