@@ -31,7 +31,7 @@
 
         <ng-container matColumnDef="quantity">
           <td mat-cell *matCellDef="let element" class="tdItem">
-            <span>{{element.quantity}} units</span>
+            <span>{{ element.quantity }} units</span>
           </td>
         </ng-container>
         <ng-container matColumnDef="totalPrice" class="tdItem">
@@ -43,12 +43,12 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
       <div class="address">
-      <span class="bold">Shipping Address:</span>
-      <span>Street: {{order.shippingAddress?.street}}</span>
-      <span>City: {{order.shippingAddress?.city}}</span>
-      <span>State: {{order.shippingAddress?.state}}</span>
-      <span>Zipcode: {{order.shippingAddress?.zip}}</span>
-    </div>
+        <span class="bold">Shipping Address:</span>
+        <span>Street: {{ order.shippingAddress["street"] }}</span>
+        <span>City: {{ order.shippingAddress["city"] }}</span>
+        <span>State: {{ order.shippingAddress["state"] }}</span>
+        <span>Zipcode: {{ order.shippingAddress["zip"] }}</span>
+      </div>
     </mat-expansion-panel>
   </mat-accordion>
 </div>

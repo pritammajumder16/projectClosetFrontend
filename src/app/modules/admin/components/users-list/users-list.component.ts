@@ -1,8 +1,8 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { BackendServiceService } from '../../../../services/backend-service.service';
-import { CategoryCreateComponent } from '../category-create/category-create.component';
 import { UserUpdateDialogComponent } from '../user-update-dialog/user-update-dialog.component';
 
 @Component({
@@ -10,7 +10,7 @@ import { UserUpdateDialogComponent } from '../user-update-dialog/user-update-dia
   templateUrl: './users-list.component.html',
   styleUrl: './users-list.component.scss',
 })
-export class UsersListComponent {
+export class UsersListComponent implements OnInit {
   constructor(
     private _Router: Router,
     private _dialog: MatDialog,

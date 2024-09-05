@@ -23,6 +23,8 @@
     "@angular/router": "^17.2.0",
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
+    "@stripe/react-stripe-js": "^2.8.0",
+    "@stripe/stripe-js": "^4.4.0",
     "install": "^0.13.0",
     "ng-http-loader": "^15.0.0",
     "ngx-editor": "^17.0.1",

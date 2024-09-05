@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BackendServiceService } from '../../../../services/backend-service.service';
 import { AuthServiceService } from '../../../../services/auth-service.service';
 import { Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss',
 })
-export class CheckoutComponent {
+export class CheckoutComponent implements OnInit {
   constructor(
     private _backendService: BackendServiceService,
     private _authService: AuthServiceService,
@@ -20,6 +20,7 @@ export class CheckoutComponent {
   displayedColumns = ['title', 'unitPrice', 'quantity', 'totalPrice'];
   public fileUri!: string;
   public shippingCostPerItem = 100;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public cartItems: any[] = [];
   addressForm!: FormGroup;
   async ngOnInit() {
@@ -47,6 +48,7 @@ export class CheckoutComponent {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   quantityChange(change: number, element: any) {
     if (element.quantity + change >= 1)
       element.quantity = element.quantity + change;
@@ -68,7 +70,7 @@ export class CheckoutComponent {
       parseFloat(this.totalPriceWithoutShipping.toString()) +
       this.cartItems.length * this.shippingCostPerItem; // Example amount
     this._backendService
-      .makePostApiCall('user/initiatePayment', {
+      .makePostApiCall('user/stripe-create-checkout-session', {
         amount,
         email: this._authService.getData().email,
         products: this.cartItems,
@@ -80,7 +82,7 @@ export class CheckoutComponent {
           console.log('Payment initiated successfully:', res);
           if (res.success) {
             // this._router.navigateByUrl(res.data)
-            window.location.href = res.data;
+            // window.location.href = res.data;
           }
         },
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

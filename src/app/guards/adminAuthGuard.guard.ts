@@ -10,12 +10,10 @@ import { AuthServiceService } from '../services/auth-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../common/error-dialog/error-dialog.component';
 
-export const canActivateAdmin: CanActivateFn = (
-  route: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot
-) => {
+export const canActivateAdmin: CanActivateFn = () => {
   const _authService = inject(AuthServiceService);
   const _dialog = inject(MatDialog);
+  console.log('_authService', _authService);
   if (_authService.getData().token && _authService.getData().roleId == 1) {
     return true;
   }

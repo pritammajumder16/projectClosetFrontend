@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
 import { BackendServiceService } from './backend-service.service';
 import { MatDialog } from '@angular/material/dialog';

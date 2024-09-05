@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendServiceService } from '../../../../services/backend-service.service';
 import { AuthServiceService } from '../../../../services/auth-service.service';
+import { IOrder } from '../../../../../models/order';
 
 @Component({
   selector: 'app-orders',
@@ -8,7 +9,7 @@ import { AuthServiceService } from '../../../../services/auth-service.service';
   styleUrl: './orders.component.scss',
 })
 export class OrdersComponent implements OnInit {
-  public allOrders: any[] = [];
+  public allOrders: IOrder[] = [];
   public fileUri!: string;
   displayedColumns = ['title', 'quantity', 'totalPrice'];
   constructor(
