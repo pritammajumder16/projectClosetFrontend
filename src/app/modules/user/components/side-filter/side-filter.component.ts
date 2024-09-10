@@ -49,7 +49,6 @@ export class SideFilterComponent implements OnInit {
     if (allData?.['priceFilterS1']) {
       this.value1 = Number(allData['priceFilterS1']);
     }
-    console.log(this.value1, allData);
 
     if (allData?.['priceFilterS2']) {
       this.value2 = Number(allData['priceFilterS2']);
@@ -66,7 +65,6 @@ export class SideFilterComponent implements OnInit {
     if (allData?.['searchText']) {
       this.searchText = allData['searchText'];
     }
-    console.log('allDataa', this.allData);
   }
   searchClick(
     event: { preventDefault: () => void; stopPropagation: () => void },
@@ -81,13 +79,6 @@ export class SideFilterComponent implements OnInit {
     _data: string | number | ISizeFilter | ICategoryFilter,
     _type: string
   ) {
-    console.log({
-      priceFilterS2: this.value2,
-      priceFilterS1: this.value1,
-      categoryFilter: this.selectedCategories,
-      sizeFilter: this.selectedSizes,
-      searchText: this.searchText,
-    });
     this.filterChangeTrigger.emit({
       priceFilterS2: this.value2,
       priceFilterS1: this.value1,

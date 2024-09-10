@@ -50,7 +50,6 @@ export class UserUpdateDialogComponent {
     this.dialogRef.close();
   }
   submit(form: NgForm) {
-    console.log(form.value);
     if (form.invalid) return;
     const obj: any = {};
     if (this.userName) {

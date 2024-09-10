@@ -86,7 +86,6 @@ export class ProductCreateComponent {
           if (res?.data?.productImages && res.data.productImages.length > 0) {
             res.data.productImages.forEach((fileUrl: string) => {
               this.allFiles.push(fileUrl);
-              console.log(this.productForm.value);
               this.allFilesBase64.push(this._backendService.fileURI + fileUrl);
             });
           }
@@ -99,7 +98,6 @@ export class ProductCreateComponent {
       const i = this.categoryList.findIndex(
         (category: any) => category.categoryId == finalObj.categoryId
       );
-      console.log(i);
       if (i >= 0) {
         this.productForm.patchValue({
           categoryName: this.categoryList[i].categoryName,
@@ -107,21 +105,16 @@ export class ProductCreateComponent {
         finalObj.categoryName = this.categoryList[i].categoryName;
       }
     }
-    console.log(finalObj);
     if (this.productForm.invalid) return;
-    console.log({ ...finalObj });
-    console.log(finalObj.productImages);
     finalObj.productImages = finalObj.productImages.map((file: any) => {
       if (!(typeof file == 'string')) return file.name;
       return file;
     });
-    console.log('product images', finalObj.productImages);
     const formData = new FormData();
     formData.append('product', JSON.stringify(finalObj));
     this.allFiles.forEach((file: any) => {
       if (typeof file != 'string') formData.append('files', file);
     });
-    console.log(this.allFiles[0]);
     this._backendService
       .sendFormDataApiCall('admin/productUpload', formData)
       .subscribe((res: any) => {

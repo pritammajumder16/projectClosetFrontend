@@ -56,7 +56,6 @@ export class HomeComponent implements OnInit {
     }
 
     this.allData = { ...obj };
-    console.log(this.allData);
     this.sideChild?.getAllData(this.allData);
     this.drawerChild?.getAllData(this.allData);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -65,9 +64,7 @@ export class HomeComponent implements OnInit {
       .toPromise();
     if (res.success) {
       this.productList = res.data?.products;
-      console.log(this.productList);
       this.length = res.data?.count;
-      console.log('inhere');
       this.drawerChild.changeCount(this.length);
       this.sideChild.changeCount(this.length);
     }
@@ -85,7 +82,6 @@ export class HomeComponent implements OnInit {
     return parseFloat(parseFloat(String(price)).toFixed(2));
   }
   filterChangeTrigger(event: IFilters) {
-    console.log(event);
     this.getProductList(event);
   }
   routeToProduct(product: IProduct) {
@@ -94,7 +90,6 @@ export class HomeComponent implements OnInit {
     });
   }
   onPageChange(event: PageEvent) {
-    console.log(event);
     this.pageSize = event.pageSize;
     this.pageIndex = event.pageIndex + 1;
     this.getProductList();

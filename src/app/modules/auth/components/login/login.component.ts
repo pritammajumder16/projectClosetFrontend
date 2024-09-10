@@ -24,7 +24,6 @@ export class LoginComponent {
       .makeGetApiCall('auth/login', form.value)
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .subscribe((res: { [key: string]: any }) => {
-        console.log(res);
         if (res['success'] == true) {
           this._authService.setUserData(res['data']);
           this._router.navigate(['/']);

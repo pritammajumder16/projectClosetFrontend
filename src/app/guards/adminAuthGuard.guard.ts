@@ -13,7 +13,7 @@ import { ErrorDialogComponent } from '../common/error-dialog/error-dialog.compon
 export const canActivateAdmin: CanActivateFn = () => {
   const _authService = inject(AuthServiceService);
   const _dialog = inject(MatDialog);
-  console.log('_authService', _authService);
+  console.log(_authService.getData());
   if (_authService.getData().token && _authService.getData().roleId == 1) {
     return true;
   }

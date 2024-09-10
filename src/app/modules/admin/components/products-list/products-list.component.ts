@@ -59,7 +59,6 @@ export class ProductsListComponent {
   page(event: any) {
     this.pageSize = event.pageSize;
     this.currentPage = event.pageIndex + 1;
-    console.log(event);
     this.getDatasource(this.currentPage, event.pageSize);
   }
 }

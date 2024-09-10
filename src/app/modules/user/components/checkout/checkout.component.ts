@@ -65,7 +65,6 @@ export class CheckoutComponent implements OnInit {
 
   checkOut() {
     const shippingAddress = this.addressForm.value;
-    console.log(shippingAddress);
     const amount =
       parseFloat(this.totalPriceWithoutShipping.toString()) +
       this.cartItems.length * this.shippingCostPerItem; // Example amount
@@ -79,7 +78,6 @@ export class CheckoutComponent implements OnInit {
       .subscribe(
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (res: any) => {
-          console.log('Payment initiated successfully:', res);
           if (res.success) {
             // this._router.navigateByUrl(res.data)
             // window.location.href = res.data;

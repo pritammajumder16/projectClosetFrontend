@@ -25,7 +25,6 @@ export class FilterDrawersComponent {
     this.filterChangeTrigger.emit(event);
   }
   changeCount(count: number) {
-    console.log(count);
     this.productCount = count;
     this.sideChild.changeCount(count);
   }

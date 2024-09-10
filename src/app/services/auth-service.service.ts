@@ -27,6 +27,7 @@ export class AuthServiceService {
     localStorage.setItem('token', data['authToken'] || '');
     localStorage.setItem('userName', data['userName'] || '');
     localStorage.setItem('email', data['email'] || '');
+    localStorage.setItem('roleId', data['roleId']);
     localStorage.setItem(
       'timerExpiry',
       (new Date().getTime() + 7.2e7).toString() //20 hours validity initially
@@ -40,7 +41,7 @@ export class AuthServiceService {
     this.token = localStorage.getItem('token') || undefined;
     this.userName = localStorage.getItem('userName') || undefined;
     this.email = localStorage.getItem('email') || undefined;
-    console.log(this.token, this.userName, this.email);
+    this.roleId = parseInt(localStorage.getItem('roleId')) || undefined;
     const timerExpiry = parseInt(localStorage.getItem('timerExpiry') || '0');
     const timerValidity = timerExpiry - new Date().getTime();
     if (timerValidity > 0) {
@@ -57,6 +58,8 @@ export class AuthServiceService {
         })
         .subscribe((res: any) => {
           if (res.success == true) {
+            console.log('role matrix', res);
+            localStorage.setItem('roleId', res.data['roleId']);
             this.roleId = res.data.roleId;
             this.roleName = res.data.roleName;
             this.isAuthenticated = true;

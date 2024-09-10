@@ -52,9 +52,7 @@ export class ProductComponent implements OnInit {
         .toPromise();
       if (res.success) {
         this.productData = res.data;
-        console.log('res.data', res.data);
         this.previewImage = this.productData.productImages[0];
-        console.log(this.productData);
       }
     });
   }

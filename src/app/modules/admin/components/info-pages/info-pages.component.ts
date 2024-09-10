@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Editor } from 'ngx-editor';
 import { BackendServiceService } from '../../../../services/backend-service.service';
 
@@ -7,7 +7,7 @@ import { BackendServiceService } from '../../../../services/backend-service.serv
   templateUrl: './info-pages.component.html',
   styleUrl: './info-pages.component.scss',
 })
-export class InfoPagesComponent {
+export class InfoPagesComponent implements OnInit, OnDestroy {
   editor1!: Editor;
   editor2!: Editor;
   html1 = '';
@@ -32,13 +32,11 @@ export class InfoPagesComponent {
         }
       });
     }
-    console.log(res);
   }
   async save(type: string, html: string) {
     const res = await this._backendService
       .makePostApiCall('admin/pageInfo', { name: type, html })
       .toPromise();
-    console.log(res);
   }
 
   ngOnDestroy(): void {

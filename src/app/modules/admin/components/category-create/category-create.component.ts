@@ -1,4 +1,5 @@
-import { Component, Inject } from '@angular/core';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Component, Inject, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
@@ -7,10 +8,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   templateUrl: './category-create.component.html',
   styleUrl: './category-create.component.scss',
 })
-export class CategoryCreateComponent {
+export class CategoryCreateComponent implements OnInit {
   public action: string | undefined;
   public categoryId: number | undefined;
-  public categoryName: String | undefined;
+  public categoryName: string | undefined;
   public showForm: boolean = false;
   constructor(
     private dialogRef: MatDialogRef<CategoryCreateComponent>,
@@ -19,11 +20,9 @@ export class CategoryCreateComponent {
   ngOnInit() {
     this.action = this.data.action;
     if (this.action == 'update') {
-      console.log(this.data);
       this.categoryId = this.data.element.categoryId;
 
       this.categoryName = this.data.element.categoryName;
-      console.log(this.categoryId, this.categoryName);
     }
     this.showForm = true;
   }

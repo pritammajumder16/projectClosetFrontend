@@ -28,9 +28,7 @@ export class OrdersComponent implements OnInit {
       .makeGetApiCall('user/getOrders', { email })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .subscribe((res: any) => {
-        console.log(res);
         this.allOrders = res.data;
-        console.log('This.allOrders', this.allOrders);
       });
   }
   capitalizeFirstLetter(string: string) {
