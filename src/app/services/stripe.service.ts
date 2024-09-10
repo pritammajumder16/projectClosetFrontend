@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { loadStripe } from '@stripe/stripe-js';
-import { environment } from '../environments/environment.dev';
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
