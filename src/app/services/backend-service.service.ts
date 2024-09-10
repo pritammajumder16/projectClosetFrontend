@@ -2,14 +2,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BackendServiceService {
-  private URI = 'http://localhost:4000/';
+  private URI = environment.BACKEND_URI;
 
-  public fileURI = 'http://localhost:4000/uploads/';
+  public fileURI = environment.BACKEND_URI + 'uploads/';
 
   private headers = { 'content-type': 'application/json' };
   // public makeHeaders(){

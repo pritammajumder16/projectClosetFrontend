@@ -5,4 +5,5 @@ export const environment = {
     'AcHAX0PYhzMHgMz5lCeUuYSZTBwYz1KpU63zKSGss5kCzMiBI4D7nWZC_ffp7KudJWqA1DpYoQ62MBeh',
   STRIPE_PUBLISHABLE_KEY:
     'pk_test_51PiLnkSJ7tD9AdS9fDSMjNlgYt86Xoq7oSH7a4aDYX4LSjtl9LpqvrRpUCP6v7UXZH3NQzOE7LBFypjUi8tbEWYE00PkIObMFd',
+  BACKEND_URI: 'https://projectclosetbackend.onrender.com/',
 };
